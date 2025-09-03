@@ -8,7 +8,6 @@ import type { Project } from "../data/projects";
 function resolveImg(src?: string) {
   if (!src) return undefined;
   if (src.startsWith("/") || src.startsWith("http") || src.startsWith("data:")) return src;
-  // e.g. "images/tikkle.png" → "/<base>/images/tikkle.png"
   return `${import.meta.env.BASE_URL}${src.replace(/^\/+/, "")}`;
 }
 
@@ -17,7 +16,6 @@ export default function ProjectCard({ p }: { p: Project }) {
   const [open, setOpen] = useState(false);
   const [idx, setIdx] = useState(0);
 
-  // 갤러리 소스(여러 장 우선, 없으면 단일 이미지)
   const images = p.images?.length ? p.images : (p.image ? [{ src: p.image, alt: p.imageAlt }] : []);
   const hasGallery = images.length > 0;
 
@@ -45,17 +43,30 @@ export default function ProjectCard({ p }: { p: Project }) {
           </div>
 
           <p className="mt-2 text-gray-600">{p.summary}</p>
-
+          {p.link && p.linkBelowSummary && (
+            <a
+              href={p.link}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 inline-flex items-center gap-1 text-sm text-blue-600 hover:underline"
+            >
+              <LinkIcon size={16}/> {p.linkLabel ?? "링크"}
+            </a>
+          )}
           {p.highlights && (
             <ul className="mt-3 text-sm text-gray-700 list-disc pl-5 space-y-1">
               {p.highlights.map((h, i) => <li key={i}>{h}</li>)}
             </ul>
           )}
 
+          
+
           {/* 내 역할 */}
           {p.myRole && (
-            <div className="mt-4 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs bg-gray-50 text-gray-800">
-              <Briefcase size={14} /> {p.myRole}
+            <div className="mt-4">
+              <div className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs bg-gray-50 text-gray-800">
+                <Briefcase size={14} /> {p.myRole}
+              </div>
             </div>
           )}
 
@@ -72,20 +83,25 @@ export default function ProjectCard({ p }: { p: Project }) {
           ) : null}
         </div>
 
-        <div className="mt-4 flex items-center justify-between flex-wrap gap-3">
-          <div className="flex flex-wrap gap-2">
-            {p.stack.map((s) => (
-              <span key={s} className="inline-flex items-center rounded-full border px-3 py-1 text-xs text-gray-700 bg-gray-50">
-                {s}
-              </span>
-            ))}
+          <div className="mt-4 flex items-center justify-between flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2">
+              {p.stack.map((s) => (
+                <span key={s} className="inline-flex items-center rounded-full border px-3 py-1 text-xs text-gray-700 bg-gray-50">
+                  {s}
+                </span>
+              ))}
           </div>
 
           {/* 액션 링크들 + 이미지 버튼 */}
           <div className="flex items-center gap-2 flex-wrap">
-            {p.link && (
-              <a className="inline-flex items-center gap-1 text-sm hover:underline" href={p.link} target="_blank" rel="noreferrer">
-                <LinkIcon size={16}/> Live
+            {p.link && !p.linkBelowSummary && (
+              <a
+                className="inline-flex items-center gap-2 text-sm text-blue-600 hover:underline"
+                href={p.link}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <LinkIcon size={16}/> {p.linkLabel ?? "Live"}
               </a>
             )}
 
@@ -102,22 +118,38 @@ export default function ProjectCard({ p }: { p: Project }) {
                 </a>
               )
             )}
-
-            {hasGallery && (
-              <button
-                type="button"
-                onClick={() => { setIdx(0); setOpen(true); }}
-                className="inline-flex items-center gap-1 text-sm rounded-md border px-3 py-1.5 hover:bg-gray-50"
-                aria-haspopup="dialog"
-              >
-                <ImageIcon size={16}/> 이미지
-              </button>
-            )}
+            
           </div>
+          {hasGallery && (
+            <span
+              role="button"
+              tabIndex={0}
+              aria-haspopup="dialog"
+              aria-label="이미지 보기"
+              onClick={() => { setIdx(0); setOpen(true); }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault(); setIdx(0); setOpen(true);
+                }
+              }}
+              className="
+                mt-4 inline-flex items-center gap-2.5 cursor-pointer select-none
+                px-3 py-1 rounded-md
+                text-sm text-gray-800 leading-none whitespace-nowrap
+                bg-transparent
+                transition-colors duration-200
+                hover:bg-[#ff69b4] hover:text-white
+                focus:outline-none focus:ring-2 focus:ring-[##ff69b4]/60 focus:ring-offset-2
+              "
+            >
+              <ImageIcon size={16} aria-hidden="true" />
+                <span className="uppercase tracking-wide">이미지</span>
+            </span>
+          )}
         </div>
       </div>
 
-      {/* 모달: 갤러리 (한 가지만 사용) */}
+      
       {open && hasGallery && (
         <GalleryModal
           title={p.title}
@@ -143,19 +175,20 @@ function GalleryModal({
   onNext: () => void;
   onClose: () => void;
 }) {
-  const ANIM_MS = 200; // 열기/닫기 애니메이션 시간
+  const ANIM_MS = 200; 
   const closeRef = useRef<HTMLButtonElement>(null);
-  const [show, setShow] = useState(false);      // 입장 애니메이션 상태
-  const [leaving, setLeaving] = useState(false); // 퇴장 애니메이션 상태
+  const [show, setShow] = useState(false);     
+  const [leaving, setLeaving] = useState(false); 
 
-  // mount 시 페이드/스케일 인 + 포커스
+  
   useEffect(() => {
     const id = requestAnimationFrame(() => setShow(true));
     closeRef.current?.focus();
     return () => cancelAnimationFrame(id);
   }, []);
 
-  // ESC/←/→ 키 처리 (ESC는 애니메이션 닫기)
+  
+  
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") requestClose();

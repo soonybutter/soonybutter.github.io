@@ -15,7 +15,10 @@ import selftop13 from "../assets/projects/selftop/selftop13.png";
 import selftop14 from "../assets/projects/selftop/selftop14.png";
 import selftop15 from "../assets/projects/selftop/selftop15.png";
 import selftop16 from "../assets/projects/selftop/selftop16.png";
-
+import suri00 from "../assets/projects/starstarsuri/suri00.png";
+import suri01 from "../assets/projects/starstarsuri/suri01.png";
+import suri02 from "../assets/projects/starstarsuri/suri02.png";
+import suri03 from "../assets/projects/starstarsuri/suri03.png";
 
 export type RepoLink = { label: string; url: string };
 
@@ -28,7 +31,8 @@ export type Project = {
   summary: string
   stack: string[]
   image?: string
-  link?: string           
+  link?: string      
+  linkLabel?: string     
   repo?: string           
   repos?: RepoLink[]      
   period?: string
@@ -39,6 +43,7 @@ export type Project = {
   contrib?: string[]
   imageAlt?: string    
   images?: ProjectImage[] 
+  linkBelowSummary?: boolean
 }
 
 export const projects: Project[] = [
@@ -53,7 +58,7 @@ export const projects: Project[] = [
     period: "2025.07 - 2025.09",
     highlights: ["카카오/네이버/구글 OAuth ", "저축 기록 시 배지달성,", "목표달성 Progress 시각화", "배지 챌린지 및 랭킹 제공"],
     teamSize: 1, 
-    myRole: "Full-stack", 
+    myRole: "풀스택", 
   },
   {
     title: "셀프탑 (조립 PC 쇼핑몰)",
@@ -80,24 +85,35 @@ export const projects: Project[] = [
 
     ],
     link: "https://drive.google.com/file/d/1QVjMApIgox6PezS-BDVYwUkuJaOVgL2e/view?usp=sharing&t=7",
+    linkLabel: "시연영상",
     repo: "https://github.com/Dipory-Dev/SelfTop.git",
     period: "2024.12 - 2025.01",
     highlights: ["사업자 등록번호 유효성 검사 · 주소 API 연동", "제품 상세 페이지 구현", "DB 테이블 및 데이터 관리","회원 가입 기능 구현 "],
     teamSize: 5,
-    myRole: "Full-stack",
+    myRole: "풀스택",
   },
   {
-    title: "집수리 업체 ‘별별집수리’ 홈페이지 제작",
-    summary: "집수리 소상공인 업체 웹 페이지 제작",
-    stack: ["React", "Spring Boot", "MySQL","CRUD구현","Maven", "MySQL"],
+    title: "집수리 업체 ‘별별집수리’ 홈페이지 ",
+    summary: "집수리 소상공인 업체 웹 페이지 제작 프로젝트",
+    link: "http://starstarsuri.o-r.kr/",        
+    linkLabel: "사이트",  
+    linkBelowSummary: true,
+    stack: ["React", "Spring Boot + JPA", "MySQL","CRUD구현","Maven", "MySQL", "Azure VM", "Axios"],
     repos: [
       { label: "Frontend", url: "https://github.com/soonybutter/starstarsuri_FE" },
       { label: "Backend",  url: "https://github.com/soonybutter/starstarsuri_BE" }
     ],
+    images:[
+      {src: suri00, alt: "메인 페이지", caption:"메인 페이지 1"},
+      {src: suri03, alt: "메인 페이지", caption:"메인 페이지 2"},
+      {src: suri01, alt: "상세 페이지", caption:"상세 페이지 "},
+      {src: suri02, alt: "게시판", caption:"문의 게시판 "},
+      
+    ],
     period: "2024.06 - 2025.08 + 2025.06 리팩토링",
-    highlights: ["문의 게시판 CRUD", "반응형 UI", "AWS EC2 배포"],
+    highlights: ["문의 게시판 CRUD", "반응형 UI", "NginX 리버스 프록시 설정"],
     teamSize: 1,
-    myRole: "Full-stack",
+    myRole: "풀스택",
   },
   
 ]

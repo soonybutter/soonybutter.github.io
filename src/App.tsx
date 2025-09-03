@@ -1,7 +1,10 @@
-import { ArrowRight, Github, Mail, Pencil,MapPin, Notebook, Rocket, User, Calendar, Phone, GraduationCap } from "lucide-react"
+import { Cake, Home, ArrowRight, Github, Mail, Pencil,MapPin, Notebook, Rocket, User, Calendar, Phone, GraduationCap, IdCard } from "lucide-react"
+import Typewriter from "./components/Typewriter";
 import ProjectCard from "./components/ProjectCard"
 import { projects } from "./data/projects"
 import type { LucideIcon } from "lucide-react";
+import profileImg from "./assets/profile.jpg";
+import Reveal from"./components/Reveal";
 
 const aboutItems = [
   //{ icon: User,           label: "이름",     value: "양다연" },
@@ -24,9 +27,9 @@ export default function App() {
         <nav className="mx-auto max-w-6xl px-4 h-14 flex items-center justify-between">
           <a href="#" className="font-display text-4xl"></a>
           <div className="hidden sm:flex gap-6 text-sm">
-            <a href="#projects" className="hover:underline">Projects</a>
-            <a href="#skills" className="hover:underline">Skills</a>
             <a href="#about" className="hover:underline">About</a>
+            <a href="#skills" className="hover:underline">Skills</a>
+            <a href="#projects" className="hover:underline">Projects</a>
             <a href="#contact" className="hover:underline">Contact</a>
           </div>
         </nav>
@@ -34,108 +37,163 @@ export default function App() {
 
 
       {/* HERO */}
-      <section className="mx-auto max-w-6xl px-4 pt-16 pb-10">
-        <div className="grid md:grid-cols-2 gap-10 items-center">
-          <div>
-            <h1 className="font-display text-7xl leading-none">양다연_</h1>
-            <p className="mt-3 text-lg text-gray-700">
-              
-            </p>
-            <div className="mt-6 flex gap-3">
-              <a href="https://github.com/soonybutter" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl px-5 py-3 ring-1 ring-gray-300">
-                <Github size={18}/> GitHub
-              </a>
-            </div>
-            <div className="mt-6 flex items-center gap-3 text-sm text-gray-600">
-              <Notebook size={16}/> Blog: https://soonybutter.tistory.com/ <br/>
-            </div>
-          </div>
-          
+      <section className="mx-auto max-w-6xl px-4 pt-20 pb-14">
+        <div className="mx-auto text-center">
+          <h1 className="font-display text-4xl md:text-4xl lg:text-4xl leading-[1.05] tracking-tight text-gray-900">
+            <Typewriter
+              lines={[
+                "안녕하세요!",
+                "사용자 경험을 최우선으로 생각하는",
+                "풀스택 개발자 양다연입니다."
+              ]}
+              speed={70}        // 타이핑 속도
+              lineDelay={600}   // 줄 전환 지연
+              startDelay={150}  // 시작 지연
+              loop={false}
+              gap={25}
+            />
+          </h1>
         </div>
-      </section>
-
-      {/* ABOUT */}
-      <section id="about" className="bg-gray-50 border-y">
-        <div className="mx-auto max-w-6xl px-4 py-16">
-          <h2 className="font-display text-6xl">About Me</h2>
-
-          <p className="mt-4 text-gray-700 leading-relaxed">
-            안녕하세요!<br />
-            사용자 경험을 최우선으로 생각하는 개발자 양다연입니다. <br />
-            팀원과의 협업에 열린 자세로 임하여 사용자의 일상에 기여하겠습니다.
-          </p>
-
-          {/* ── Info Grid ───────────────────────────────────────── */}
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
-            {aboutItems.map((it) => (
-              <InfoItem key={it.label} Icon={it.icon} label={it.label} value={it.value} />
-            ))}
-          </div>
-        </div>
-
-      </section>
-
-
-
-      <section>
-      <div className="rounded-2xl border shadow-soft p-6 bg-gradient-to-br from-gray-50 to-white">
-        <div className="grid grid-cols-3 gap-4">
-          <Stat kpi="3+" label="주요 프로젝트"/>
-          <Stat kpi="150+" label="기술 블로그 포스트"/>
-          <Stat kpi="3+" label="배포 경험(AWS/Azure)"/>
-          <Stat kpi="정보처리기사" label="자격증"/>
-          <Stat kpi="OAuth2" label="금융·보안"/>
-          
-        </div>
-      </div>
       </section>
       
-      {/* SKILLS */}
-      <section id="skills" className="mx-auto max-w-6xl px-4 py-16">
-        <h2 className="font-display text-6xl">Skills</h2>
-        <div className="mt-6 grid md:grid-cols-3 gap-6">
-          <SkillGroup title="Language" items={["Javascript","Java","C++","TypeScript"]}/>
-          <SkillGroup title="Front-end" items={["Node.js/React", "TypeScript", "Vite", "AJAX", "Thymeleaf"]}/>
-          <SkillGroup title="Back-end" items={["Spring (Boot)", "Gradle", "Maven", "JPA/MyBatis", "JWT/OAuth2"]}/>
-          <SkillGroup title="Infra & DB" items={["MySQL", "OracleDB", "OracleCloud "]}/>
-          <SkillGroup title="Server" items={["AWS EC2", "Azure VM", "Tomcat", "NginX", "Vercel"]}/>
-        </div>
-        
+
+      {/* ABOUT  */}
+      <Reveal as="section" id="about" className="mx-auto max-w-6xl px-4 py-16" once={false} duration={500}>
+       <section id="about" className="mx-auto max-w-6xl px-4 py-16">
+        <h2 className="font-display text-3xl md:text-4xl text-center tracking-widest">
+          ABOUT
+        </h2>
+
+          {/* 가운데 배치 + 사진(좌) / 정보(우) */}
+          <div className="mt-6 max-w-3xl mx-auto">
+            <div className="flex items-start gap-8 sm:gap-12">
+              
+            <div className="shrink-0 mr-6 sm:mr-10">
+            <img
+                src={profileImg}
+                alt="프로필 사진"
+                className="w-40 sm:w-48 aspect-[3/4] object-cover rounded-md"
+            />
+          </div>
+
+          {/* 정보 리스트 */}
+          <div className="flex-1">
+            <ul className="space-y-3 text-gray-900">
+              <li className="flex items-center gap-3">
+                <User size={18} className="shrink-0" />
+                <span>양다연</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Cake size={18} className="shrink-0" />
+                <span>2000. 02. 29</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Home size={18} className="shrink-0" />
+                <span>대한민국</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Mail size={18} className="shrink-0" />
+                <a href="mailto:ydy229@naver.com" className="hover:underline">
+                  ydy229@naver.com
+                </a>
+              </li>
+              <li className="flex items-center gap-3">
+                <GraduationCap size={18} className="shrink-0" />
+                <span>전북대학교 ( 영어영문학 / 부전공 컴퓨터공학 )</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Pencil size={18} className="shrink-0" />
+                <span>[현대이지웰] Java 풀스택 개발자 아카데미 ( 24.08–25.01 )</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <IdCard size={18} className="shrink-0" />
+                <span>정보처리기사</span>
+              </li>
+            </ul>
+
+            {/* 점선 구분선 + 하단 아이콘 */}
+            <hr className="my-6 border-t border-dashed border-gray-300" />
+            <div className="flex items-center justify-around text-gray-700">
+              <a href="https://github.com/soonybutter" target="_blank" rel="noreferrer" className="p-2 hover:opacity-80">
+                <Github size={28} />
+              </a>
+              <a href="https://soonybutter.tistory.com/" target="_blank" rel="noreferrer" className="p-2 hover:opacity-80">
+                <span className="font-black text-2xl leading-none">Blog</span>
+              </a>
+            </div>
+          </div>
+              </div>
+            </div>
       </section>
+      </Reveal>
+      
+        
+      <Reveal as="section" className="mx-auto max-w-6xl px-4" once={false} delay={80}>
+        <section className="mx-auto max-w-5xl px-3">
+          <div className="rounded-2xl border shadow-soft p-6  from-gray-50 to-white">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <Stat kpi="3+" label="주요 프로젝트"/>
+                <Stat kpi="150+" label="기술 블로그 포스트"/>
+                <Stat kpi="3+" label="배포 경험(AWS/Azure)"/>
+                {/*<Stat kpi="정보처리기사" label="자격증"/>*/}
+                {/*<Stat kpi="OAuth2" label="금융·보안"/>*/}
+            </div>
+          </div>
+        </section>
+      </Reveal>
+      
+      
+      {/* SKILLS */}
+      <Reveal as="section" id="skills" className="mx-auto max-w-6xl px-4 py-16 " once={false} delay={120}>
+        <section id="skills" className="mx-auto max-w-6xl px-4 py-16">
+          <h2 className="font-display text-5xl text-center">Skills</h2>
+          <div className="mt-6 grid md:grid-cols-3 gap-6">
+            <SkillGroup title="Language" items={["Javascript","Java","C++"]}/>
+            <SkillGroup title="Front-end" items={["Node.js/React", "TypeScript", "Vite", "AJAX", "Thymeleaf"]}/>
+            <SkillGroup title="Back-end" items={["Spring (Boot)", "Gradle", "Maven", "JPA/MyBatis", "JWT/OAuth2"]}/>
+            <SkillGroup title="Infra & DB" items={["MySQL", "OracleDB", "OracleCloud "]}/>
+            <SkillGroup title="Server" items={["AWS EC2", "Azure VM", "Tomcat", "NginX", "Vercel"]}/>
+          </div>
+        </section>
+      </Reveal>
+      
 
       {/* PROJECTS */}
-      <section id="projects" className="bg-gray-50 border-y">
-        <div className="mx-auto max-w-6xl px-4 py-16">
-          <div className="flex items-center justify-between">
-            <h2 className="font-display text-6xl">Projects</h2>
-            <span className="inline-flex items-center gap-2 text-sm text-gray-600"><Rocket size={16}/> selected works</span>
-          </div>
-          <div className="mt-8 grid md:grid-cols-2 gap-6">
-            {projects.map((p) => (
-              <ProjectCard key={p.title} p={p}/>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Reveal as="section" id="projects" className="bg-gray-50 border-y once={false}">
+          <section id="projects" className="bg-gray-50 border-y">
+            <div className="mx-auto max-w-5xl px-4 py-16">
+              <h2 className="font-display text-5xl text-center w-full">Projects</h2>
+            <div className="mt-8 grid grid-cols-1 gap-6 max-w-3xl mx-auto">
+              {projects.map((p, i) => (
+                <ProjectCard key={p.title} p={p}/>
+              ))}
+            </div>
+            </div>
+          </section>
+      </Reveal>
+      
       
 
       
 
       {/* CONTACT */}
-      <section id="contact" className="mx-auto max-w-6xl px-4 py-16">
-        <h2 className="font-display text-6xl">Contact</h2>
-        <div className="mt-4 text-gray-700">
-          <p>문의사항은 아래로 연락 주시면 감사하겠습니다. ☺️</p>
-          <div className="mt-3 flex gap-4 text-sm">
-            <a className="inline-flex items-center gap-2 hover:underline" href="mailto:you@example.com">
-              <Mail size={16}/> ydy229@naver.com
-            </a>
-            <a className="inline-flex items-center gap-2 hover:underline" href="https://github.com/soonybutter" target="_blank" rel="noreferrer">
-              <Github size={16}/> GitHub
-            </a>
+      <Reveal as="section" id="contact" className="mx-auto max-w-6xl px-4 py-16 " once={false} delay={120}>
+        <section id="contact" className="mx-auto max-w-6xl px-4 py-16">
+          <h2 className="font-display text-5xl text-center">Contact</h2>
+          <div className="mt-10 text-gray-700 text-center">
+            <p>문의사항은 아래로 연락 주시면 감사하겠습니다. ☺️</p>
+            <div className="mt-6 flex justify-center gap-4 text-sm">
+              <a className="inline-flex items-center gap-2 ">
+                <Mail size={16}/> ydy229@naver.com
+              </a>
+              <a className="inline-flex items-center gap-2 hover:underline" href="https://github.com/soonybutter" target="_blank" rel="noreferrer">
+                <Github size={16}/> GitHub
+              </a>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </Reveal>
+      
 
       {/* FOOTER */}
       <footer className="py-10 text-center text-xs text-gray-500">
