@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Smooth scroll & selection */
+html { scroll-behavior: smooth; }
+::selection { background: rgba(59,130,246,0.2); }
