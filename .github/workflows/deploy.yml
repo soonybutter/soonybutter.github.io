@@ -13,10 +13,6 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 
-defaults:
-  run:
-    working-directory: ./portfolio-starter   # ← 네 실제 앱 폴더명으로!
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -30,7 +26,7 @@ jobs:
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./portfolio-starter/dist     # ← 빌드 산출물 경로
+          path: ./dist         # ← Vite 기본 출력 경로
   deploy:
     needs: build
     runs-on: ubuntu-latest
