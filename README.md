@@ -1,6 +1,4 @@
-# Portfolio Starter (React + Vite + Tailwind)
-
-A minimal, modern portfolio site starter configured for GitHub Pages.
+# 포트폴리오 웹 페이지 입니다. 
 
 ## Quickstart
 ```bash
