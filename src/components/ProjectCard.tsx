@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
-  Github, Link as LinkIcon, Users, Briefcase, ListChecks,
+  Github, Link as LinkIcon, Users, Laptop, ListChecks,
   Image as ImageIcon, X, ChevronLeft, ChevronRight
 } from "lucide-react";
 import type { Project } from "../data/projects";
@@ -26,10 +26,13 @@ export default function ProjectCard({ p }: { p: Project }) {
 
   return (
     <>
-      <div className="group rounded-2xl p-5 bg-white/70 hover:bg-white ring-1 ring-gray-200 hover:ring-gray-300 shadow-soft transition-all duration-300 flex flex-col">
+      
+      <div className="relative group rounded-2xl p-5 pb-14 bg-white/70 hover:bg-white ring-1 ring-gray-200 hover:ring-gray-300 shadow-soft transition-all duration-300 flex flex-col font-title">
         <div className="flex-1">
           <div className="flex items-start justify-between gap-4">
-            <h3 className="text-3xl font-display leading-none">{p.title}</h3>
+            <h3 className="text-3xl font-display leading-none text-[#EB4298]">
+              {p.title}
+            </h3>
 
             {/* 기간 + 팀 인원 */}
             <div className="text-xs text-gray-500 text-right space-y-1">
@@ -42,30 +45,21 @@ export default function ProjectCard({ p }: { p: Project }) {
             </div>
           </div>
 
-          <p className="mt-2 text-gray-600">{p.summary}</p>
-          {p.link && p.linkBelowSummary && (
-            <a
-              href={p.link}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-2 inline-flex items-center gap-1 text-sm text-blue-600 hover:underline"
-            >
-              <LinkIcon size={16}/> {p.linkLabel ?? "링크"}
-            </a>
-          )}
+          {/* 요약 */}
+          <p className="mt-2 text-[#8029C2]">{p.summary}</p>
+
+          {/* 하이라이트 */}
           {p.highlights && (
             <ul className="mt-3 text-sm text-gray-700 list-disc pl-5 space-y-1">
               {p.highlights.map((h, i) => <li key={i}>{h}</li>)}
             </ul>
           )}
 
-          
-
           {/* 내 역할 */}
           {p.myRole && (
             <div className="mt-4">
               <div className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs bg-gray-50 text-gray-800">
-                <Briefcase size={14} /> {p.myRole}
+                <Laptop size={14} /> {p.myRole}
               </div>
             </div>
           )}
@@ -83,73 +77,89 @@ export default function ProjectCard({ p }: { p: Project }) {
           ) : null}
         </div>
 
-          <div className="mt-4 flex items-center justify-between flex-wrap gap-3">
-            <div className="flex flex-wrap gap-2">
-              {p.stack.map((s) => (
-                <span key={s} className="inline-flex items-center rounded-full border px-3 py-1 text-xs text-gray-700 bg-gray-50">
-                  {s}
-                </span>
-              ))}
+        {/* 스택 */}
+        <div className="mt-4">
+          <div className="flex flex-wrap gap-2">
+            {p.stack.map((s, i) => (
+              <span
+                key={`${s}-${i}`} // 중복 스택명 대비
+                className="inline-flex items-center rounded-full border px-3 py-1 text-xs text-gray-700 bg-gray-50"
+              >
+                {s}
+              </span>
+            ))}
           </div>
 
-          {/* 액션 링크들 + 이미지 버튼 */}
-          <div className="flex items-center gap-2 flex-wrap">
-            {p.link && !p.linkBelowSummary && (
+          {/*  스택 바로 아래: 깃허브/시연영상 링크들 */}
+          <div className="mt-2 flex items-center gap-3 flex-wrap">
+            {p.link && (
               <a
                 className="inline-flex items-center gap-2 text-sm text-blue-600 hover:underline"
                 href={p.link}
                 target="_blank"
                 rel="noreferrer"
               >
-                <LinkIcon size={16}/> {p.linkLabel ?? "Live"}
+                <LinkIcon size={16}/> {p.linkLabel ?? "시연영상"}
               </a>
             )}
 
             {p.repos?.length ? (
               p.repos.map((r) => (
-                <a key={r.url} className="inline-flex items-center gap-1 text-sm hover:underline" href={r.url} target="_blank" rel="noreferrer">
+                <a
+                  key={r.url}
+                  className="inline-flex items-center gap-1 text-sm hover:underline"
+                  href={r.url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <Github size={16}/> {r.label}
                 </a>
               ))
             ) : (
               p.repo && (
-                <a className="inline-flex items-center gap-1 text-sm hover:underline" href={p.repo} target="_blank" rel="noreferrer">
+                <a
+                  className="inline-flex items-center gap-1 text-sm hover:underline"
+                  href={p.repo}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <Github size={16}/> Repo
                 </a>
               )
             )}
-            
           </div>
-          {hasGallery && (
-            <span
-              role="button"
-              tabIndex={0}
-              aria-haspopup="dialog"
-              aria-label="이미지 보기"
-              onClick={() => { setIdx(0); setOpen(true); }}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault(); setIdx(0); setOpen(true);
-                }
-              }}
-              className="
-                mt-4 inline-flex items-center gap-2.5 cursor-pointer select-none
-                px-3 py-1 rounded-md
-                text-sm text-gray-800 leading-none whitespace-nowrap
-                bg-transparent
-                transition-colors duration-200
-                hover:bg-[#ff69b4] hover:text-white
-                focus:outline-none focus:ring-2 focus:ring-[##ff69b4]/60 focus:ring-offset-2
-              "
-            >
-              <ImageIcon size={16} aria-hidden="true" />
-                <span className="uppercase tracking-wide">이미지</span>
-            </span>
-          )}
         </div>
+
+        {/* 📷 이미지 버튼: 카드 오른쪽-하단 고정 */}
+        {hasGallery && (
+          <button
+            type="button"
+            aria-haspopup="dialog"
+            aria-label="이미지 보기"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setIdx(0);
+              setOpen(true);
+            }}
+            className="
+              absolute bottom-4 right-4
+              inline-flex items-center gap-2.5 cursor-pointer select-none
+              px-3 py-1 rounded-md
+              text-sm text-gray-800 leading-none whitespace-nowrap
+              bg-transparent
+              transition-colors duration-200
+              hover:bg-[#ff69b4] hover:text-white
+              focus:outline-none focus:ring-2 focus:ring-[#ff69b4]/60 focus:ring-offset-2
+            "
+          >
+            <ImageIcon size={16} aria-hidden="true" />
+            <span className="uppercase tracking-wide">이미지</span>
+          </button>
+        )}
       </div>
 
-      
+      {/* 모달 */}
       {open && hasGallery && (
         <GalleryModal
           title={p.title}
@@ -165,9 +175,7 @@ export default function ProjectCard({ p }: { p: Project }) {
 }
 
 /* ────────────────────────────────────────────────────────── */
-function GalleryModal({
-  title, images, index, onPrev, onNext, onClose,
-}: {
+function GalleryModal({ title, images, index, onPrev, onNext, onClose }: {
   title?: string;
   images: { src: string; alt?: string; caption?: string }[];
   index: number;
@@ -175,20 +183,17 @@ function GalleryModal({
   onNext: () => void;
   onClose: () => void;
 }) {
-  const ANIM_MS = 200; 
+  const ANIM_MS = 200;
   const closeRef = useRef<HTMLButtonElement>(null);
-  const [show, setShow] = useState(false);     
-  const [leaving, setLeaving] = useState(false); 
+  const [show, setShow] = useState(false);
+  const [leaving, setLeaving] = useState(false);
 
-  
   useEffect(() => {
     const id = requestAnimationFrame(() => setShow(true));
     closeRef.current?.focus();
     return () => cancelAnimationFrame(id);
   }, []);
 
-  
-  
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") requestClose();
@@ -216,15 +221,13 @@ function GalleryModal({
       role="dialog" aria-modal="true"
       onClick={(e) => { if (e.target === e.currentTarget) requestClose(); }}
     >
-      {/* 고정 크기 컨테이너 */}
       <div
         className={`relative w-[min(92vw,1000px)] h-[min(90vh,720px)]
-                    rounded-2xl bg-white shadow-2xl flex flex-col
+                    rounded-2xl bg-white shadow-2xl flex flex-col font-title
                     transition-all duration-200
                     ${show && !leaving ? "opacity-100 scale-100 translate-y-0"
                                        : "opacity-0 scale-95 translate-y-1"}`}
       >
-        {/* 헤더 */}
         <div className="flex items-center justify-between px-4 py-3 border-b">
           <h3 className="text-lg font-semibold truncate pr-8">{title}</h3>
           <button
@@ -239,14 +242,11 @@ function GalleryModal({
           </button>
         </div>
 
-        {/* 캡션: 배경 없음 + 가운데 정렬 + 살짝 위 여백 + 높이 +2px */}
-        <div className="px-4 mt-2 py-[30px] text-sm text-gray-700 text-center">
+        <div className="px-5 mt-2 py-[30px] text-base text-gray-700 text-center">
           <p className="line-clamp-2">{caption}</p>
         </div>
 
-        {/* 이미지 영역 */}
         <div className="flex-1 min-h-0 relative flex items-center justify-center px-4 py-4">
-          {/* Prev */}
           <button
             type="button"
             onClick={onPrev}
@@ -256,14 +256,12 @@ function GalleryModal({
             <ChevronLeft size={22} />
           </button>
 
-          {/* 부드러운 페이드 전환 (중복 <img> 제거!) */}
           <FadingImage
-            key={index}  // index가 바뀔 때마다 재마운트 → fade-in
+            key={index}
             src={resolved}
             alt={current?.alt ?? `${title} screenshot ${index + 1}`}
           />
 
-          {/* Next */}
           <button
             type="button"
             onClick={onNext}
@@ -274,7 +272,6 @@ function GalleryModal({
           </button>
         </div>
 
-        {/* 페이지 표시 */}
         <div className="px-4 pb-4 text-center text-sm text-gray-700">
           {index + 1} / {images.length}
         </div>

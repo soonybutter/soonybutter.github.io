@@ -19,6 +19,7 @@ import suri00 from "../assets/projects/starstarsuri/suri00.png";
 import suri01 from "../assets/projects/starstarsuri/suri01.png";
 import suri02 from "../assets/projects/starstarsuri/suri02.png";
 import suri03 from "../assets/projects/starstarsuri/suri03.png";
+import suri04 from "../assets/projects/starstarsuri/suri04.png";
 
 export type RepoLink = { label: string; url: string };
 
@@ -62,7 +63,7 @@ export const projects: Project[] = [
   },
   {
     title: "셀프탑 (조립 PC 쇼핑몰)",
-    summary: "장바구니 활용을 강조한 조립식 컴퓨터 구매 쇼핑몰 프로젝트",
+    summary: "장바구니 활용을 강조한 조립식 컴퓨터 쇼핑몰 ",
     stack: ["React", "Spring Boot", "JQoery","Thymeleaf","MyBatis","Maven", "Oracle Cloud","OracleSQL"],
     images:[
       {src: selftop00, alt: "페이지 구성", caption:"관리자 - 판매자 - 구매자 서비스 흐름도"},
@@ -88,17 +89,22 @@ export const projects: Project[] = [
     linkLabel: "시연영상",
     repo: "https://github.com/Dipory-Dev/SelfTop.git",
     period: "2024.12 - 2025.01",
-    highlights: ["사업자 등록번호 유효성 검사 · 주소 API 연동", "제품 상세 페이지 구현", "DB 테이블 및 데이터 관리","회원 가입 기능 구현 "],
+    highlights: [
+      "사업자 등록번호 유효성 검사 · 주소 API 연동하여 회원가입 기능 구현 ", 
+      "MyBatis활용, SQL문 분리하여 안정적으로 바인딩, 효율적으로 관리",
+      "상세페이지의 상품정보와 리뷰기능을 제공, 리뷰관리 기능 구현", 
+      "메인 페이지 장바구니에 상품을 담고, 견적 저장하는 기능 구현"
+    ],
     teamSize: 5,
     myRole: "풀스택",
   },
   {
     title: "집수리 업체 ‘별별집수리’ 홈페이지 ",
-    summary: "집수리 소상공인 업체 웹 페이지 제작 프로젝트",
+    summary: "집수리 소상공인 웹 페이지 제작 ",
     link: "http://starstarsuri.o-r.kr/",        
     linkLabel: "사이트",  
     linkBelowSummary: true,
-    stack: ["React", "Spring Boot + JPA", "MySQL","CRUD구현","Maven", "MySQL", "Azure VM", "Axios"],
+    stack: ["React", "Spring Boot + JPA", "MySQL","CRUD구현","Maven", "Azure VM", "Axios"],
     repos: [
       { label: "Frontend", url: "https://github.com/soonybutter/starstarsuri_FE" },
       { label: "Backend",  url: "https://github.com/soonybutter/starstarsuri_BE" }
@@ -108,10 +114,15 @@ export const projects: Project[] = [
       {src: suri03, alt: "메인 페이지", caption:"메인 페이지 2"},
       {src: suri01, alt: "상세 페이지", caption:"상세 페이지 "},
       {src: suri02, alt: "게시판", caption:"문의 게시판 "},
-      
+      {src: suri04, alt: "문의 수정 및 삭제하기", caption: "문의 관리"}
     ],
     period: "2024.06 - 2025.08 + 2025.06 리팩토링",
-    highlights: ["문의 게시판 CRUD", "반응형 UI", "NginX 리버스 프록시 설정"],
+    highlights: [
+      "Controller–Service–Repository 구조로 CRUD 구성, 문의게시판 기능 구현", 
+      "NginX로 리버스 프록시, 단일 도메인을 구성, CORS 문제 해결", 
+      "React-Query, React-Hook-Form을 활용하여 API 요청 및 입력 폼 처리",
+      "Azure 스냅샷과 애플리케이션 주기 스케줄로 롤백 가능성 확보"
+    ],
     teamSize: 1,
     myRole: "풀스택",
   },

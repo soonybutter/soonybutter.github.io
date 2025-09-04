@@ -1,4 +1,4 @@
-import { Cake, Home, ArrowRight, Github, Mail, Pencil,MapPin, Notebook, Rocket, User, Calendar, Phone, GraduationCap, IdCard } from "lucide-react"
+import { Award, Cake, Home, ArrowRight, Github, Mail, Pencil,MapPin, Notebook, Rocket, User, Calendar, Phone, GraduationCap, IdCard } from "lucide-react"
 import Typewriter from "./components/Typewriter";
 import ProjectCard from "./components/ProjectCard"
 import { projects } from "./data/projects"
@@ -7,10 +7,7 @@ import profileImg from "./assets/profile.jpg";
 import Reveal from"./components/Reveal";
 
 const aboutItems = [
-  //{ icon: User,           label: "이름",     value: "양다연" },
   { icon: Calendar,       label: "생년월일", value: "2000.02.29" },
-  //{ icon: MapPin,         label: "위치",     value: "대한민국" },
-  //{ icon: Phone,          label: "연락처",   value: "010-0000-0000" },
   {
     icon: Mail,          label: "이메일",
     value: <a className="hover:underline" href="mailto:ydy229@naver.com">ydy229@naver.com</a>
@@ -22,6 +19,7 @@ const aboutItems = [
 export default function App() {
   return (
     <main className="font-sans">
+      
       {/* NAV */}
       <header className="sticky top-0 z-50 backdrop-blur bg-white/70 border-b">
         <nav className="mx-auto max-w-6xl px-4 h-14 flex items-center justify-between">
@@ -39,14 +37,14 @@ export default function App() {
       {/* HERO */}
       <section className="mx-auto max-w-6xl px-4 pt-20 pb-14">
         <div className="mx-auto text-center">
-          <h1 className="font-display text-4xl md:text-4xl lg:text-4xl leading-[1.05] tracking-tight text-gray-900">
+          <h1 className="font-display text-3xl sm:text-4xl leading-[1.1] tracking-tight text-gray-900">
             <Typewriter
               lines={[
                 "안녕하세요!",
                 "사용자 경험을 최우선으로 생각하는",
                 "풀스택 개발자 양다연입니다."
               ]}
-              speed={70}        // 타이핑 속도
+              speed={75}        // 타이핑 속도
               lineDelay={600}   // 줄 전환 지연
               startDelay={150}  // 시작 지연
               loop={false}
@@ -64,20 +62,19 @@ export default function App() {
           ABOUT
         </h2>
 
-          {/* 가운데 배치 + 사진(좌) / 정보(우) */}
+          
           <div className="mt-6 max-w-3xl mx-auto">
-            <div className="flex items-start gap-8 sm:gap-12">
-              
-            <div className="shrink-0 mr-6 sm:mr-10">
-            <img
-                src={profileImg}
-                alt="프로필 사진"
-                className="w-40 sm:w-48 aspect-[3/4] object-cover rounded-md"
-            />
-          </div>
+            <div className="flex flex-col sm:flex-row items-start gap-6 sm:gap-10">
+              <div className="shrink-0 mx-auto sm:mx-0">
+                <img
+                  src={profileImg}
+                  alt="프로필 사진"
+                  className="w-40 sm:w-48 aspect-[3/4] object-cover rounded-md"
+                />
+              </div>
 
           {/* 정보 리스트 */}
-          <div className="flex-1">
+          <div className="flex-1 font-title font-light text-[15px] sm:text-base">
             <ul className="space-y-3 text-gray-900">
               <li className="flex items-center gap-3">
                 <User size={18} className="shrink-0" />
@@ -86,10 +83,6 @@ export default function App() {
               <li className="flex items-center gap-3">
                 <Cake size={18} className="shrink-0" />
                 <span>2000. 02. 29</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Home size={18} className="shrink-0" />
-                <span>대한민국</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={18} className="shrink-0" />
@@ -103,7 +96,7 @@ export default function App() {
               </li>
               <li className="flex items-center gap-3">
                 <Pencil size={18} className="shrink-0" />
-                <span>[현대이지웰] Java 풀스택 개발자 아카데미 ( 24.08–25.01 )</span>
+                <span>[현대이지웰] Java 풀스택 개발자 아카데미 2회차 수료 </span>
               </li>
               <li className="flex items-center gap-3">
                 <IdCard size={18} className="shrink-0" />
@@ -111,7 +104,6 @@ export default function App() {
               </li>
             </ul>
 
-            {/* 점선 구분선 + 하단 아이콘 */}
             <hr className="my-6 border-t border-dashed border-gray-300" />
             <div className="flex items-center justify-around text-gray-700">
               <a href="https://github.com/soonybutter" target="_blank" rel="noreferrer" className="p-2 hover:opacity-80">
@@ -127,16 +119,19 @@ export default function App() {
       </section>
       </Reveal>
       
-        
-      <Reveal as="section" className="mx-auto max-w-6xl px-4" once={false} delay={80}>
+      {/* Numbers */}  
+      <Reveal as="section" className="mx-auto max-w-6xl px-3" once={false} delay={80}>
         <section className="mx-auto max-w-5xl px-3">
-          <div className="rounded-2xl border shadow-soft p-6  from-gray-50 to-white">
+          <div className="rounded-3xl border shadow-soft p-6  from-gray-30 to-white">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <Stat kpi="3+" label="주요 프로젝트"/>
-                <Stat kpi="150+" label="기술 블로그 포스트"/>
-                <Stat kpi="3+" label="배포 경험(AWS/Azure)"/>
-                {/*<Stat kpi="정보처리기사" label="자격증"/>*/}
-                {/*<Stat kpi="OAuth2" label="금융·보안"/>*/}
+              <AwardCard
+                label={`[현대이지웰] Java 풀스택 개발자 아카데미
+                        프로젝트 경진대회
+                        최우수상`}
+                size="sm"
+              />
+              <Stat kpi="150+" label="기술 블로그 포스트" size="sm" />
+              <Stat kpi="3+" label="배포 경험(AWS/Azure)" size="sm" />
             </div>
           </div>
         </section>
@@ -146,13 +141,20 @@ export default function App() {
       {/* SKILLS */}
       <Reveal as="section" id="skills" className="mx-auto max-w-6xl px-4 py-16 " once={false} delay={120}>
         <section id="skills" className="mx-auto max-w-6xl px-4 py-16">
-          <h2 className="font-display text-5xl text-center">Skills</h2>
-          <div className="mt-6 grid md:grid-cols-3 gap-6">
-            <SkillGroup title="Language" items={["Javascript","Java","C++"]}/>
-            <SkillGroup title="Front-end" items={["Node.js/React", "TypeScript", "Vite", "AJAX", "Thymeleaf"]}/>
-            <SkillGroup title="Back-end" items={["Spring (Boot)", "Gradle", "Maven", "JPA/MyBatis", "JWT/OAuth2"]}/>
-            <SkillGroup title="Infra & DB" items={["MySQL", "OracleDB", "OracleCloud "]}/>
-            <SkillGroup title="Server" items={["AWS EC2", "Azure VM", "Tomcat", "NginX", "Vercel"]}/>
+          <h2 className="font-display text-4xl text-center mb-4 sm:mb-6">Skills</h2>
+
+        <div className="mt-6 grid grid-cols-6 md:grid-cols-5 gap-2 sm:gap-3 font-title font-light">
+          <SkillGroup className="col-span-2 md:col-span-1"
+                      title="Language"   items={["Javascript","Java","C++"]}/>
+          <SkillGroup className="col-span-2 md:col-span-1"
+                      title="Front-end"  items={["Node.js/React","TypeScript","Vite","AJAX","Thymeleaf"]}/>
+          <SkillGroup className="col-span-2 md:col-span-1"
+                      title="Back-end"   items={["Spring (Boot)","Gradle","Maven","JPA/MyBatis","JWT/OAuth2"]}/>
+
+          <SkillGroup className="col-span-2 col-start-2 md:col-span-1 md:col-start-auto"
+                      title="Infra & DB" items={["MySQL","OracleDB","OracleCloud"]}/>
+          <SkillGroup className="col-span-2 col-start-4 md:col-span-1 md:col-start-auto"
+                      title="Server"     items={["AWS EC2","Azure VM","Tomcat","NginX","Vercel"]}/>
           </div>
         </section>
       </Reveal>
@@ -162,7 +164,7 @@ export default function App() {
       <Reveal as="section" id="projects" className="bg-gray-50 border-y once={false}">
           <section id="projects" className="bg-gray-50 border-y">
             <div className="mx-auto max-w-5xl px-4 py-16">
-              <h2 className="font-display text-5xl text-center w-full">Projects</h2>
+              <h2 className="font-display text-4xl text-center w-full">Projects</h2>
             <div className="mt-8 grid grid-cols-1 gap-6 max-w-3xl mx-auto">
               {projects.map((p, i) => (
                 <ProjectCard key={p.title} p={p}/>
@@ -172,24 +174,22 @@ export default function App() {
           </section>
       </Reveal>
       
-      
-
-      
 
       {/* CONTACT */}
       <Reveal as="section" id="contact" className="mx-auto max-w-6xl px-4 py-16 " once={false} delay={120}>
-        <section id="contact" className="mx-auto max-w-6xl px-4 py-16">
-          <h2 className="font-display text-5xl text-center">Contact</h2>
+        <section id="contact" className="mx-auto max-w-6xl px-4 py-16 font-title">
+          <h2 className="font-display text-4xl text-center">Contact</h2>
           <div className="mt-10 text-gray-700 text-center">
             <p>문의사항은 아래로 연락 주시면 감사하겠습니다. ☺️</p>
             <div className="mt-6 flex justify-center gap-4 text-sm">
-              <a className="inline-flex items-center gap-2 ">
+              <a className="inline-flex items-center gap-2 hover:underline" href="mailto:ydy229@naver.com">
                 <Mail size={16}/> ydy229@naver.com
               </a>
               <a className="inline-flex items-center gap-2 hover:underline" href="https://github.com/soonybutter" target="_blank" rel="noreferrer">
                 <Github size={16}/> GitHub
               </a>
             </div>
+              
           </div>
         </section>
       </Reveal>
@@ -203,29 +203,85 @@ export default function App() {
   )
 }
 
-function Stat({ kpi, label }: { kpi: string; label: string }) {
+function Stat({
+  kpi,
+  label,
+  size = "md",
+}: {
+  kpi: string;
+  label: string;
+  size?: "sm" | "md" | "lg";
+}) {
+  const sizes = {
+    sm: { pad: "p-3", box: "w-14 h-14", kpi: "text-xl"  },
+    md: { pad: "p-4", box: "w-16 h-16", kpi: "text-2xl" },
+    lg: { pad: "p-5", box: "w-20 h-20", kpi: "text-3xl" },
+  }[size];
+
   return (
-    <div className="rounded-xl border bg-white p-4 text-center">
-      <div className="font-display text-5xl leading-none">{kpi}</div>
-      <div className="mt-1 text-xs text-gray-600">{label}</div>
+    <div className={`rounded-xl border bg-white ${sizes.pad} text-center font-title font-light`}>
+      <div className={`mx-auto flex items-center justify-center rounded-full ${sizes.box} bg-white border-3 border-gray-300`}>
+        <span className={`${sizes.kpi} leading-none text-[#9032DB]`}>{kpi}</span>
+      </div>
+      
+      <div className="mt-2 text-[13px] sm:text-sm text-gray-700">{label}</div>
     </div>
-  )
+  );
 }
 
-function SkillGroup({ title, items }: { title: string; items: string[] }) {
+function AwardCard({
+  label,
+  size = "md",
+}: {
+  label: string;
+  size?: "sm" | "md" | "lg";
+}) {
+  const sizes = {
+    sm: { pad: "p-3", box: "w-14 h-14", icon: 22 },
+    md: { pad: "p-4", box: "w-16 h-16", icon: 26 },
+    lg: { pad: "p-5", box: "w-20 h-20", icon: 30 },
+  }[size];
+
   return (
-    <div className="rounded-2xl border p-6 bg-white shadow-soft">
-      <h3 className="font-display text-3xl">{title}</h3>
-      <ul className="mt-3 space-y-2 text-sm text-gray-700">
-        {items.map((it) => (
-          <li key={it} className="flex items-center gap-2">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-gray-800"></span>
-            {it}
-          </li>
+    <div className={`rounded-xl border bg-white ${sizes.pad} text-center font-title font-light`}>
+      <div className={`mx-auto flex items-center justify-center rounded-full ${sizes.box} bg-transparent ring-0`}>
+        <Award size={sizes.icon} className="text-[#9032DB]" aria-hidden="true" />
+      </div>
+      <div className="mt-2 text-[10px] sm:text-sm text-gray-700 leading-relaxed whitespace-pre-line">
+        {label}
+      </div>
+    </div>
+  );
+}
+
+
+function SkillGroup({
+  title,
+  items,
+  className = "",
+}: { title: string; items: string[]; className?: string }) {
+  return (
+    <div
+        className={`
+          rounded-3xl border bg-white shadow-md
+          w-full mx-auto
+          flex flex-col items-center
+          px-2 py-3 sm:px-3 sm:py-4
+          min-h-[120px] sm:min-h-[140px] md:min-h-[170px]
+          ${className}
+        `}
+      >
+      <h3 className="font-display text-[#9032DB] text-center [font-size:clamp(12px,3.8vw,20px)] leading-tight mb-1.5">
+        {title}
+      </h3>
+
+      <ul className="mt-1.5 space-y-1 text-gray-700 list-none text-center [font-size:clamp(10px,3.2vw,14px)] leading-snug break-words">
+        {items.map((it, i) => (
+          <li key={`${title}-${it}-${i}`}>{it}</li>
         ))}
       </ul>
     </div>
-  )
+  );
 }
 
 function InfoItem({

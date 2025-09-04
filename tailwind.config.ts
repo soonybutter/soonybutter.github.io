@@ -5,6 +5,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
+        title: ['"OneStoreMobileGothicTitleFont"', "ui-sans-serif", "system-ui"],
         display: [
           "OneStoreMobileGothicTitleFont",
           "Pretendard Variable",

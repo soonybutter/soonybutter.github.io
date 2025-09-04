@@ -10,6 +10,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  /* 모바일: 화면의 92% 폭만 사용 → 좌우 여백 생김
+     sm 이상: 기존 max-w-6xl + 가로 패딩 유지 */
+  .page-gutter {
+    @apply mx-auto w-[92%] sm:w-auto sm:max-w-6xl sm:px-4;
+  }
+
+  /* 모바일에서 내용 자체도 살짝 더 좁게(카드/리스트 등) */
+  .narrow-mobile {
+    @apply max-w-[40rem] mx-auto w-full;
+  }
+}
+
+
 /* Smooth scroll & selection */
 html { scroll-behavior: smooth; }
 
@@ -26,3 +40,4 @@ html { scroll-behavior: smooth; }
   animation: caret-blink 1s steps(1) infinite;
   vertical-align: -2px;
 }
+
