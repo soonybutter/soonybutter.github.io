@@ -21,12 +21,14 @@ import suri02 from "../assets/projects/starstarsuri/suri02.png";
 import suri03 from "../assets/projects/starstarsuri/suri03.png";
 import suri04 from "../assets/projects/starstarsuri/suri04.png";
 
+import starReadme from "../readmes/starstarsuri.md?raw";
+import selftopReadme from "../readmes/selftop.md?raw";
+import tikkleReademe from "../readmes/tikkle.md?raw";
+import portfolioReadme from "../readmes/portfolio.md?raw";
+
 export type RepoLink = { label: string; url: string };
-
 export type TeamMember = { url?: string };
-
 export type ProjectImage = { src: string; alt?: string; caption?: string; };
-
 export type Project = {
   title: string
   summary: string
@@ -45,26 +47,25 @@ export type Project = {
   imageAlt?: string    
   images?: ProjectImage[] 
   linkBelowSummary?: boolean
+  readme?: string | React.ReactNode;
 }
+
 
 export const projects: Project[] = [
   {
-    title: "티끌 (챌린지형 저축 관리 앱)",
+    title: "티끌 ",
     summary: "일상 속에서 아낀 돈을 '가상 저축'하여, 특정 목표 금액 달성을 게임처럼 즐기는 서비스",
-    stack: ["React", "TypeScript","Spring Boot", "MySQL", "OAuth2","Gradle"],
-    repos: [
-      { label: "Frontend", url: "https://github.com/soonybutter/tikkle_FE" },
-      { label: "Backend",  url: "https://github.com/soonybutter/tikkle" }
-    ],
+    stack: ["React , TypeScript , Spring Boot , MySQL , OAuth2 , Gradle"],
     period: "2025.07 - 2025.09",
     highlights: ["카카오/네이버/구글 OAuth ", "저축 기록 시 배지달성,", "목표달성 Progress 시각화", "배지 챌린지 및 랭킹 제공"],
     teamSize: 1, 
     myRole: "풀스택", 
+    readme: tikkleReademe,
   },
   {
-    title: "셀프탑 (조립 PC 쇼핑몰)",
+    title: "셀프탑 ",
     summary: "장바구니 활용을 강조한 조립식 컴퓨터 쇼핑몰 ",
-    stack: ["React", "Spring Boot", "JQoery","Thymeleaf","MyBatis","Maven", "Oracle Cloud","OracleSQL"],
+    stack: ["React , Spring Boot , JQuery , Thymeleaf , MyBatis , Maven , Oracle Cloud , OracleSQL "],
     images:[
       {src: selftop00, alt: "페이지 구성", caption:"관리자 - 판매자 - 구매자 서비스 흐름도"},
       {src: selftop01, alt: "메인 페이지", caption:"메인페이지 "},
@@ -87,7 +88,6 @@ export const projects: Project[] = [
     ],
     link: "https://drive.google.com/file/d/1QVjMApIgox6PezS-BDVYwUkuJaOVgL2e/view?usp=sharing&t=7",
     linkLabel: "시연영상",
-    repo: "https://github.com/Dipory-Dev/SelfTop.git",
     period: "2024.12 - 2025.01",
     highlights: [
       "사업자 등록번호 유효성 검사 · 주소 API 연동하여 회원가입 기능 구현 ", 
@@ -97,18 +97,15 @@ export const projects: Project[] = [
     ],
     teamSize: 5,
     myRole: "풀스택",
+    readme: selftopReadme,
   },
   {
-    title: "집수리 업체 ‘별별집수리’ 홈페이지 ",
-    summary: "집수리 소상공인 웹 페이지 제작 ",
+    title: "별별집수리 ",
+    summary: "집수리 소상공인 웹 사이트 제작 ",
     link: "http://starstarsuri.o-r.kr/",        
-    linkLabel: "사이트",  
+    linkLabel: "http://starstarsuri.o-r.kr/",  
     linkBelowSummary: true,
-    stack: ["React", "Spring Boot + JPA", "MySQL","CRUD구현","Maven", "Azure VM", "Axios"],
-    repos: [
-      { label: "Frontend", url: "https://github.com/soonybutter/starstarsuri_FE" },
-      { label: "Backend",  url: "https://github.com/soonybutter/starstarsuri_BE" }
-    ],
+    stack: ["React ,  Spring Boot ,  JPA ,  MySQL ,  CRUD구현 ,  Maven ,  Azure VM ,  Axios"],
     images:[
       {src: suri00, alt: "메인 페이지", caption:"메인 페이지 1"},
       {src: suri03, alt: "메인 페이지", caption:"메인 페이지 2"},
@@ -125,6 +122,21 @@ export const projects: Project[] = [
     ],
     teamSize: 1,
     myRole: "풀스택",
+    readme: starReadme,
   },
-  
+  {
+    title: "포트폴리오 웹사이트",
+    period: "2025.08 – 2025.09",
+    summary: "포트폴리오 웹사이트",
+    stack: [" React, Vite , TypeScript , Tailwind CSS , Lucide , Github" ],
+    highlights: [
+      "README 모달·우측 드로어 등 인터랙션 컴포넌트 직접 구현",
+      "이미지/LCP 최적화, preconnect 및 폰트 서브셋",
+      "메타/OG/파비콘/구조화 데이터로 SEO 개선",
+      "반응형(모바일 퍼스트) + 다크모드(선택)",
+    ],
+    link: "http://soonybutter.github.io/",
+    linkLabel: "http://soonybutter.github.io/",
+    readme: portfolioReadme,
+  },
 ]

@@ -9,10 +9,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script type="module" crossorigin src="/assets/index-BMGLDnJC.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-IQYXanQa.css">
   </head>
   <body class="bg-white text-gray-900">
     <div id="root"></div>
+    <script>
+      // HTTP로 접속했으면 HTTPS로 강제 이동
+      if (location.protocol === 'http:' && location.hostname === 'soonybutter.github.io') {
+        location.replace('https://' + location.host + location.pathname + location.search + location.hash);
+      }
+    </script>
   </body>
 </html>

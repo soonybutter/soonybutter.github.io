@@ -1,4 +1,4 @@
-import { Award, Cake, Home, ArrowRight, Github, Mail, Pencil,MapPin, Notebook, Rocket, User, Calendar, Phone, GraduationCap, IdCard } from "lucide-react"
+import { Award, Book,  Cake, Home, ArrowRight, Github, Mail, Pencil,MapPin, Notebook, Rocket, User, Calendar, Phone, GraduationCap, IdCard } from "lucide-react"
 import Typewriter from "./components/Typewriter";
 import ProjectCard from "./components/ProjectCard"
 import { projects } from "./data/projects"
@@ -92,7 +92,7 @@ export default function App() {
               </li>
               <li className="flex items-center gap-3">
                 <GraduationCap size={18} className="shrink-0" />
-                <span>전북대학교 ( 영어영문학 / 부전공 컴퓨터공학 )</span>
+                <span>전북대학교 ( 영어영문학 / (부) 컴퓨터공학 )</span>
               </li>
               <li className="flex items-center gap-3">
                 <Pencil size={18} className="shrink-0" />
@@ -130,8 +130,8 @@ export default function App() {
                         최우수상`}
                 size="sm"
               />
-              <Stat kpi="150+" label="기술 블로그 포스트" size="sm" />
-              <Stat kpi="3+" label="배포 경험(AWS/Azure)" size="sm" />
+              <Stat kpi="150+" label="기술 블로그 포스트" size="sm" href="https://soonybutter.tistory.com/" />
+              <Stat kpi="3+"   label="배포 경험(AWS/Azure)" size="sm" href="#projects" />
             </div>
           </div>
         </section>
@@ -207,10 +207,12 @@ function Stat({
   kpi,
   label,
   size = "md",
+  href, 
 }: {
   kpi: string;
   label: string;
   size?: "sm" | "md" | "lg";
+  href?: string; 
 }) {
   const sizes = {
     sm: { pad: "p-3", box: "w-14 h-14", kpi: "text-xl"  },
@@ -218,14 +220,25 @@ function Stat({
     lg: { pad: "p-5", box: "w-20 h-20", kpi: "text-3xl" },
   }[size];
 
+  const isLink = !!href;
+  const isHash = href?.startsWith("#");
+  const Tag: any = isLink ? "a" : "div";
+  const linkProps = isLink
+    ? (isHash ? { href } : { href, target: "_blank", rel: "noreferrer" })
+    : {};
+
   return (
-    <div className={`rounded-xl border bg-white ${sizes.pad} text-center font-title font-light`}>
+    <Tag
+      {...linkProps}
+      className={`block rounded-xl border bg-white ${sizes.pad} text-center font-title font-light
+                  ${isLink ? "cursor-pointer hover:shadow-md transition-shadow" : ""}`}
+      aria-label={isLink ? label : undefined}
+    >
       <div className={`mx-auto flex items-center justify-center rounded-full ${sizes.box} bg-white border-3 border-gray-300`}>
         <span className={`${sizes.kpi} leading-none text-[#9032DB]`}>{kpi}</span>
       </div>
-      
       <div className="mt-2 text-[13px] sm:text-sm text-gray-700">{label}</div>
-    </div>
+    </Tag>
   );
 }
 
