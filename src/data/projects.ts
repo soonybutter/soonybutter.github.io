@@ -102,8 +102,8 @@ export const projects: Project[] = [
   {
     title: "별별집수리 ",
     summary: "집수리 소상공인 웹 사이트 제작 ",
-    link: "http://starstarsuri.o-r.kr/",        
-    linkLabel: "http://starstarsuri.o-r.kr/",  
+    link: "https://starstatsuri.site/",        
+    linkLabel: "https://starstatsuri.site/",  
     linkBelowSummary: true,
     stack: ["React ,  Spring Boot ,  JPA ,  MySQL ,  CRUD구현 ,  Maven ,  Azure VM ,  Axios"],
     images:[
