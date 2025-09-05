@@ -106,13 +106,50 @@ export default function App() {
 
             <hr className="my-6 border-t border-dashed border-gray-300" />
             <div className="flex items-center justify-around text-gray-700">
-              <a href="https://github.com/soonybutter" target="_blank" rel="noreferrer" className="p-2 hover:opacity-80">
-                <Github size={28} />
+              {/* GitHub */}
+              <a
+                href="https://github.com/soonybutter"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="GitHub"
+                title="GitHub"
+                className="
+                  group p-2 rounded-lg outline-none
+                  transition-all duration-200 ease-out
+                  hover:-translate-y-0.5 hover:scale-105 hover:text-[#9032DB]
+                  active:scale-95
+                  focus-visible:ring-2 focus-visible:ring-[#9032DB] focus-visible:ring-offset-2
+                "
+              >
+                <Github
+                  size={28}
+                  className="transition-transform duration-200 group-hover:scale-110 group-active:scale-95"
+                  aria-hidden
+                />
               </a>
-              <a href="https://soonybutter.tistory.com/" target="_blank" rel="noreferrer" className="p-2 hover:opacity-80">
+
+              {/* Blog */}
+              <a
+                href="https://soonybutter.tistory.com/"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="Blog"
+                title="Blog"
+                className="
+                  group px-3 py-2 rounded-lg outline-none
+                  no-underline hover:no-underline
+                  transition-all duration-200 ease-out
+                  hover:-translate-y-0.5 hover:scale-105 hover:text-[#9032DB]
+                  active:scale-95
+                  focus-visible:ring-2 focus-visible:ring-[#9032DB] focus-visible:ring-offset-2
+                "
+              >
                 <span className="font-black text-2xl leading-none">Blog</span>
               </a>
             </div>
+
+
+
           </div>
               </div>
             </div>
@@ -130,7 +167,7 @@ export default function App() {
                         최우수상`}
                 size="sm"
               />
-              <Stat kpi="150+" label="기술 블로그 포스트" size="sm" href="https://soonybutter.tistory.com/" />
+              <Stat kpi="130+" label="기술 블로그 포스트" size="sm" href="https://soonybutter.tistory.com/" />
               <Stat kpi="3+"   label="배포 경험(AWS/Azure)" size="sm" href="#projects" />
             </div>
           </div>

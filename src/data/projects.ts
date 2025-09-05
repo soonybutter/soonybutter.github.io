@@ -86,7 +86,7 @@ export const projects: Project[] = [
       {src: selftop16, alt:"견적 페이지", caption:"관리자는 대표 모델을 등록할 수 있습니다. "},
 
     ],
-    link: "https://drive.google.com/file/d/1QVjMApIgox6PezS-BDVYwUkuJaOVgL2e/view?usp=sharing&t=7",
+    link: "https://youtu.be/Auf2j5oB1T8?si=i_AP3UOXJ3uqICb7",
     linkLabel: "시연영상",
     period: "2024.12 - 2025.01",
     highlights: [
