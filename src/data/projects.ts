@@ -113,7 +113,7 @@ export const projects: Project[] = [
       {src: suri02, alt: "게시판", caption:"문의 게시판 "},
       {src: suri04, alt: "문의 수정 및 삭제하기", caption: "문의 관리"}
     ],
-    period: "2024.06 - 2025.08 + 2025.06 리팩토링",
+    period: "2024.06 - 2024.08 + 2025.06 리팩토링",
     highlights: [
       "Controller–Service–Repository 구조로 CRUD 구성, 문의게시판 기능 구현", 
       "NginX로 리버스 프록시, 단일 도메인을 구성, CORS 문제 해결", 
