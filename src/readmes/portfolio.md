@@ -16,4 +16,4 @@
 
 
 ## 📎 링크
--  http://soonybutter.github.io/
+-  https://soonybutter.github.io/

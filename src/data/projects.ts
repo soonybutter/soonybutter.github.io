@@ -135,8 +135,8 @@ export const projects: Project[] = [
       "메타/OG/파비콘/구조화 데이터로 SEO 개선",
       "반응형(모바일 퍼스트) + 다크모드(선택)",
     ],
-    link: "http://soonybutter.github.io/",
-    linkLabel: "http://soonybutter.github.io/",
+    link: "https://soonybutter.github.io/",
+    linkLabel: "https://soonybutter.github.io/",
     readme: portfolioReadme,
   },
 ]
