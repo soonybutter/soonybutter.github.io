@@ -20,6 +20,14 @@ import suri01 from "../assets/projects/starstarsuri/suri01.png";
 import suri02 from "../assets/projects/starstarsuri/suri02.png";
 import suri03 from "../assets/projects/starstarsuri/suri03.png";
 import suri04 from "../assets/projects/starstarsuri/suri04.png";
+import tik00 from "../assets/projects/tikkle/tik00.png";
+import tik01 from "../assets/projects/tikkle/tik01.png";
+import tik02 from "../assets/projects/tikkle/tik02.png";
+import tik03 from "../assets/projects/tikkle/tik03.png";
+import tik04 from "../assets/projects/tikkle/tik04.png";
+import tik05 from "../assets/projects/tikkle/tik05.png";
+import tik06 from "../assets/projects/tikkle/tik06.png";
+import tik07 from "../assets/projects/tikkle/tik07.png";
 
 import starReadme from "../readmes/starstarsuri.md?raw";
 import selftopReadme from "../readmes/selftop.md?raw";
@@ -55,9 +63,27 @@ export const projects: Project[] = [
   {
     title: "티끌 ",
     summary: "일상 속에서 아낀 돈을 '가상 저축'하여, 특정 목표 금액 달성을 게임처럼 즐기는 서비스",
+    link: "https://mytikkle.space/",        
+    linkLabel: "https://mytikkle.space/",
     stack: ["React , TypeScript , Spring Boot , MySQL , OAuth2 , Gradle"],
+    images:[
+      {src: tik00, alt: "페이지1", caption:"인트로 페이지"},
+      {src: tik01, alt: "페이지2", caption:"로그인 후 메인 페이지"},
+      {src: tik02, alt: "페이지3", caption:"로그인 후 메인 페이지"},
+      {src: tik03, alt: "페이지4", caption:"티끌 기록 상세페이지 - 저축 로그 관리 기능"},
+      {src: tik04, alt: "페이지5", caption:"티끌 기록 목록 페이지"},
+      {src: tik05, alt: "페이지6", caption:"새 목표 만들기"},
+      {src: tik06, alt: "페이지7", caption:"배지 현황 페이지 - 달성 시 컨페티 !"},
+      {src: tik07, alt: "페이지8", caption:" 그룹 생성 및 초대 - 친구 초대 / 그룹 내 랭킹 제공  "},
+    ],
     period: "2025.07 - 2025.09",
-    highlights: ["카카오/네이버/구글 OAuth ", "저축 기록 시 배지달성,", "목표달성 Progress 시각화", "배지 챌린지 및 랭킹 제공"],
+    highlights: [
+      "카카오·네이버·구글 OAuth 연동 - 소셜 로그인 기능 구현",
+      "저축 기록 시 배지 자동 발급 - 업적 달성 기능 구현",
+      "목표 달성 과정 시각화 - 진행률 게이지/효과 구현",
+      "배지 챌린지·랭킹 제공 - 경쟁 기반 동기부여 기능 구현",
+      "사용자 친화적 디자인 적용 - 저축 습관화 유도"
+    ],
     teamSize: 1, 
     myRole: "풀스택", 
     readme: tikkleReademe,
@@ -84,16 +110,15 @@ export const projects: Project[] = [
       {src: selftop14, alt:"견적 페이지", caption:"판매자는 자신의 재고를 이곳에서 조회하고 수정하여 관리합니다. "},
       {src: selftop15, alt:"견적 페이지", caption:"판매자의 취소요청도 이 페이지에서 관리 합니다. "},
       {src: selftop16, alt:"견적 페이지", caption:"관리자는 대표 모델을 등록할 수 있습니다. "},
-
     ],
     link: "https://youtu.be/Auf2j5oB1T8?si=i_AP3UOXJ3uqICb7",
     linkLabel: "시연영상",
     period: "2024.12 - 2025.01",
     highlights: [
-      "사업자 등록번호 유효성 검사 · 주소 API 연동하여 회원가입 기능 구현 ", 
-      "MyBatis활용, SQL문 분리하여 안정적으로 바인딩, 효율적으로 관리",
-      "상세페이지의 상품정보와 리뷰기능을 제공, 리뷰관리 기능 구현", 
-      "메인 페이지 장바구니에 상품을 담고, 견적 저장하는 기능 구현"
+      "사업자 등록번호 유효성 검사 · 주소 API 연동 - 회원가입 기능 구현 ", 
+      "MyBatis활용, SQL문 분리하여 안정적으로 바인딩 - 효율적으로 관리",
+      "상세페이지의 상품정보와 리뷰기능을 제공 - 리뷰관리 기능 구현", 
+      "메인 페이지 장바구니에 상품을 담아 - 견적 저장하는 기능 구현"
     ],
     teamSize: 5,
     myRole: "풀스택",
@@ -115,9 +140,9 @@ export const projects: Project[] = [
     ],
     period: "2024.06 - 2024.08 + 2025.06 리팩토링",
     highlights: [
-      "Controller–Service–Repository 구조로 CRUD 구성, 문의게시판 기능 구현", 
-      "NginX로 리버스 프록시, 단일 도메인을 구성, CORS 문제 해결", 
-      "React-Query, React-Hook-Form을 활용하여 API 요청 및 입력 폼 처리",
+      "Controller–Service–Repository 구조의 CRUD 구성 - 문의게시판 기능 구현", 
+      "NginX로 리버스 프록시, 단일 도메인을 구성 - CORS 문제 해결", 
+      "React-Query, React-Hook-Form을 활용 - API 요청 및 입력 폼 처리",
       "Azure 스냅샷과 애플리케이션 주기 스케줄로 롤백 가능성 확보"
     ],
     teamSize: 1,
@@ -132,8 +157,6 @@ export const projects: Project[] = [
     highlights: [
       "README 모달·우측 드로어 등 인터랙션 컴포넌트 직접 구현",
       "이미지/LCP 최적화, preconnect 및 폰트 서브셋",
-      "메타/OG/파비콘/구조화 데이터로 SEO 개선",
-      "반응형(모바일 퍼스트) + 다크모드(선택)",
     ],
     link: "https://soonybutter.github.io/",
     linkLabel: "https://soonybutter.github.io/",

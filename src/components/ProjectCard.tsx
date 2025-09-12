@@ -52,7 +52,7 @@ export default function ProjectCard({ p }: { p: Project }) {
       <div className="relative group rounded-2xl p-5 pb-16 bg-white/70 hover:bg-white ring-1 ring-gray-200 hover:ring-gray-300 shadow-soft transition-all duration-300 flex flex-col font-title">
         <div className="flex-1">
           <div className="flex items-start justify-between gap-4">
-            <h3 className="text-3xl font-display leading-none text-[#EB4298]">{p.title}</h3>
+            <h3 className="text-3xl font-display leading-none text-[#db3281]">{p.title}</h3>
 
             {/* 기간 + 팀 인원 */}
             <div className="text-xs text-gray-500 text-right space-y-1">

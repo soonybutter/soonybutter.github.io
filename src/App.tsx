@@ -116,9 +116,9 @@ export default function App() {
                 className="
                   group p-2 rounded-lg outline-none
                   transition-all duration-200 ease-out
-                  hover:-translate-y-0.5 hover:scale-105 hover:text-[#9032DB]
+                  hover:-translate-y-0.5 hover:scale-105 hover:text-[#db3281]
                   active:scale-95
-                  focus-visible:ring-2 focus-visible:ring-[#9032DB] focus-visible:ring-offset-2
+                  focus-visible:ring-2 focus-visible:ring-[#db3281] focus-visible:ring-offset-2
                 "
               >
                 <Github
@@ -139,9 +139,9 @@ export default function App() {
                   group px-3 py-2 rounded-lg outline-none
                   no-underline hover:no-underline
                   transition-all duration-200 ease-out
-                  hover:-translate-y-0.5 hover:scale-105 hover:text-[#9032DB]
+                  hover:-translate-y-0.5 hover:scale-105 hover:text-[#db3281]
                   active:scale-95
-                  focus-visible:ring-2 focus-visible:ring-[#9032DB] focus-visible:ring-offset-2
+                  focus-visible:ring-2 focus-visible:ring-[#db3281] focus-visible:ring-offset-2
                 "
               >
                 <span className="font-black text-2xl leading-none">Blog</span>
@@ -167,8 +167,8 @@ export default function App() {
                         최우수상`}
                 size="sm"
               />
-              <Stat kpi="130+" label="기술 블로그 포스트" size="sm" href="https://soonybutter.tistory.com/" />
-              <Stat kpi="3+"   label="배포 경험(AWS/Azure)" size="sm" href="#projects" />
+              <Stat kpi="130+" label="기술 블로그 포스트" size="md" href="https://soonybutter.tistory.com/" />
+              <Stat kpi="4+"   label="배포 경험(AWS/Azure)" size="md" href="#projects" />
             </div>
           </div>
         </section>
@@ -272,7 +272,7 @@ function Stat({
       aria-label={isLink ? label : undefined}
     >
       <div className={`mx-auto flex items-center justify-center rounded-full ${sizes.box} bg-white border-3 border-gray-300`}>
-        <span className={`${sizes.kpi} leading-none text-[#9032DB]`}>{kpi}</span>
+        <span className={`${sizes.kpi} leading-none text-[#db3281]`}>{kpi}</span>
       </div>
       <div className="mt-2 text-[13px] sm:text-sm text-gray-700">{label}</div>
     </Tag>
@@ -295,7 +295,7 @@ function AwardCard({
   return (
     <div className={`rounded-xl border bg-white ${sizes.pad} text-center font-title font-light`}>
       <div className={`mx-auto flex items-center justify-center rounded-full ${sizes.box} bg-transparent ring-0`}>
-        <Award size={sizes.icon} className="text-[#9032DB]" aria-hidden="true" />
+        <Award size={sizes.icon} className="text-[#db3281]" aria-hidden="true" />
       </div>
       <div className="mt-2 text-[10px] sm:text-sm text-gray-700 leading-relaxed whitespace-pre-line">
         {label}
@@ -321,7 +321,7 @@ function SkillGroup({
           ${className}
         `}
       >
-      <h3 className="font-display text-[#9032DB] text-center [font-size:clamp(12px,3.8vw,20px)] leading-tight mb-1.5">
+      <h3 className="font-display text-[#db3281] text-center [font-size:clamp(12px,3.8vw,20px)] leading-tight mb-1.5">
         {title}
       </h3>
 
