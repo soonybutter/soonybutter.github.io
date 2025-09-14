@@ -1,18 +1,20 @@
 # 🌐 개인 포트폴리오 웹사이트
 
-## 📌 Summary
+## 📌 요약
 - 채용담당자 관점의 정보 구조, 빠른 LCP, 깔끔한 타이포와 대비에 집중하였습니다.
-- README 모달, 갤러리 모달 UX 요소를 직접 제작했습니다.
+- **UX 요소:** README 모달, 갤러리 모달을 직접 제작했습니다.
+- **LCP: 2.8s → 1.6s 개선**
+- **TTFB: 420 ms → 280 ms 개선**
 
-## 🔨 Tech
+## 🔨기술
 - React + Vite + TypeScript + Tailwind CSS
 - Lucide 아이콘, Intersection + CSS 트랜지션(리빌 애니메이션)
-- GitHub Actions 를 통해 배포했습니다.
+- GitHub Actions 를 통해 배포
 
-## 🚀 Features
-- 반응형 레이아웃을 적용하고 이미지 최적화(cover/contain, lazy 로딩)를 구현했습니다.
-- SEO 강화를 위해 title/description, Open Graph(OG), 구조화 데이터를 설정했습니다.
-- 접근성을 높이기 위해 모달 내 키보드 내비게이션과 포커스 트랩을 적용했습니다.
+## 🚀 구현
+- **반응형 및 이미지 최적화:** cover/contain, lazy 로딩 구현
+- **SEO 강화:**  title/description, Open Graph(OG), 구조화 데이터를 설정
+- **접근성:** 모달 내 키보드 내비게이션과 포커스 트랩을 적용
 
 
 ## 📎 링크

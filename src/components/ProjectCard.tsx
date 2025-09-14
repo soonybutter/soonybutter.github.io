@@ -22,8 +22,18 @@ import type { Project } from "../data/projects";
 /* ---------------------- helpers ---------------------- */
 function resolveImg(src?: string) {
   if (!src) return undefined;
-  if (src.startsWith("/") || src.startsWith("http") || src.startsWith("data:")) return src;
-  return `${import.meta.env.BASE_URL}${src.replace(/^\/+/, "")}`;
+
+  // 절대 경로 / 외부 / data URI 는 그대로 사용
+  if (/^(?:\/|https?:|data:)/.test(src)) return src;
+
+  // 'assets/...' 형태면 base만 접두
+  if (src.startsWith('assets/')) {
+    return `${import.meta.env.BASE_URL}${src}`;
+  }
+
+  // 그 밖의 경우(예: 'tik04.png' 같은 파일명만 온 경우):
+  // Vite 빌드 산출물 위치를 가정해 assets/ 를 자동 접두
+  return `${import.meta.env.BASE_URL}assets/${src.replace(/^\/+/, '')}`;
 }
 
 /* ---------------------- main card ---------------------- */
@@ -46,6 +56,9 @@ export default function ProjectCard({ p }: { p: Project }) {
     if (!images.length) return;
     setGalleryIdx((i) => (i + dir + images.length) % images.length);
   };
+
+  const stack = Array.isArray(p.stack) ? p.stack : [];
+  const highlights = Array.isArray(p.highlights) ? p.highlights : [];
 
   return (
     <>
@@ -232,21 +245,105 @@ function GalleryModal({
   const [show, setShow] = useState(false);
   const [leaving, setLeaving] = useState(false);
 
+  // 드래그 스와이프 인식 임계값(px)
+  const SWIPE_THRESH = 60; 
+  const wheelAccumRef = useRef(0);
+  const WHEEL_THRESH = 60;
+  // 입력 잠금(연속으로 전환되는 것 방지)
+  const navLockRef = useRef(false);
+  // 터치 스와이프
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
+
+  // 마우스 드래그 상태
+  const [dragging, setDragging] = useState(false);
+  const [dragDX, setDragDX] = useState(0);
+  const dragStartRef = useRef<{ x: number; y: number } | null>(null);
+
   useEffect(() => {
     const id = requestAnimationFrame(() => setShow(true));
-    closeRef.current?.focus();
     return () => cancelAnimationFrame(id);
   }, []);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") requestClose();
-      if (e.key === "ArrowLeft") onPrev();
-      if (e.key === "ArrowRight") onNext();
+      if (e.key === "ArrowLeft") safeNav(-1);
+      if (e.key === "ArrowRight") safeNav(+1);
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [onPrev, onNext]);
+
+  function safeNav(dir: number) {
+    if (navLockRef.current) return;
+    navLockRef.current = true;
+    dir > 0 ? onNext() : onPrev();
+    setTimeout(() => (navLockRef.current = false), ANIM_MS + 120);
+  }
+
+  // 휠/트랙패드 스크롤로 넘기기
+  function onWheelNav(e: React.WheelEvent) {
+    const primary =
+      Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+    wheelAccumRef.current += primary;
+
+    if (Math.abs(wheelAccumRef.current) >= WHEEL_THRESH) {
+      e.preventDefault();           // 배경 스크롤 방지
+      safeNav(wheelAccumRef.current > 0 ? +1 : -1);
+      wheelAccumRef.current = 0;    // 누적 초기화
+    }
+  }
+
+  // 모바일 터치 스와이프
+  function onTouchStart(e: React.TouchEvent) {
+    const t = e.touches[0];
+    touchStartRef.current = { x: t.clientX, y: t.clientY };
+  }
+
+  function onTouchEnd(e: React.TouchEvent) {
+    const s = touchStartRef.current;
+    if (!s) return;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - s.x;
+    const dy = t.clientY - s.y;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 30) {
+      safeNav(dx < 0 ? +1 : -1);
+    }
+    touchStartRef.current = null;
+  }
+
+  // 마우스 드래그(스와이프)
+  function onMouseDown(e: React.MouseEvent) {
+    // 버튼/아이콘 클릭 등은 무시
+    if ((e.target as HTMLElement).closest("button")) return;
+    dragStartRef.current = { x: e.clientX, y: e.clientY };
+    setDragging(true);
+    setDragDX(0);
+    // 텍스트 선택/이미지 드래그 방지
+    e.preventDefault();
+  }
+
+  function onMouseMove(e: React.MouseEvent) {
+    if (!dragging || !dragStartRef.current) return;
+    const dx = e.clientX - dragStartRef.current.x;
+    setDragDX(dx);
+  }
+
+  function endMouseDrag(e?: React.MouseEvent) {
+    if (!dragging) return;
+    const dx = dragDX;
+    setDragging(false);
+    setDragDX(0);
+    if (Math.abs(dx) >= SWIPE_THRESH) {
+      safeNav(dx < 0 ? +1 : -1);
+    }
+  }
+
+  const dragStyle: React.CSSProperties = dragging
+    ? { transform: `translateX(${dragDX}px)`, transition: "none", cursor: "grabbing" }
+    : { transform: "translateX(0)", transition: "transform 150ms ease", cursor: "grab" };
+
+
 
   const current = images[index];
   const resolved = resolveImg(current?.src);
@@ -298,26 +395,39 @@ function GalleryModal({
             <p className="line-clamp-2">{caption}</p>
           </div>
 
-          {/* 이미지 영역 */}
-          <div className="flex-1 min-h-0 relative flex items-center justify-center px-4 py-4">
+          {/* 이미지 영역: 휠/터치/마우스 드래그 지원 */}
+          <div
+            className="flex-1 min-h-0 relative flex items-center justify-center px-4 py-4 select-none"
+            onWheel={onWheelNav}
+            onWheelCapture={onWheelNav}   
+            onTouchStart={onTouchStart}
+            onTouchEnd={onTouchEnd}
+            onMouseDown={onMouseDown}
+            onMouseMove={onMouseMove}
+            onMouseUp={endMouseDrag}
+            onMouseLeave={endMouseDrag}
+          >
             <button
               type="button"
-              onClick={onPrev}
-              className="absolute left-3 top-1/2 -translate-y-1/2 inline-flex items-center justify-center rounded-full p-2 hover:bg-gray-100"
+              onClick={() => safeNav(-1)}
+              className="absolute left-3 top-1/2 -translate-y-1/2 inline-flex items-center justify-center rounded-full p-2 hover:bg-gray-100 z-20"  // ← z-20 추가
               aria-label="이전" title="이전"
             >
               <ChevronLeft size={22} />
             </button>
 
-            <FadingImage
-              src={resolved}
-              alt={current?.alt ?? `${title} screenshot ${index + 1}`}
-            />
+            {/* 드래그 시 흔들림/이동 효과 + 이미지가 버튼을 가리지 않게 */}
+            <div style={dragStyle} className="z-0 pointer-events-none">  {/* ← 추가 */}
+              <FadingImage
+                src={resolved}
+                alt={current?.alt ?? `${title} screenshot ${index + 1}`}
+              />
+            </div>
 
             <button
               type="button"
-              onClick={onNext}
-              className="absolute right-3 top-1/2 -translate-y-1/2 inline-flex items-center justify-center rounded-full p-2 hover:bg-gray-100"
+              onClick={() => safeNav(+1)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 inline-flex items-center justify-center rounded-full p-2 hover:bg-gray-100 z-20"  // ← z-20 추가
               aria-label="다음" title="다음"
             >
               <ChevronRight size={22} />
@@ -344,6 +454,8 @@ function FadingImage({ src, alt }: { src?: string; alt?: string }) {
     <img
       src={src}
       alt={alt}
+      draggable={false}                          
+      onDragStart={(e) => e.preventDefault()}    
       className={`max-h-full max-w-full object-contain rounded-lg border transition-opacity duration-300 ${
         ready ? "opacity-100" : "opacity-0"
       }`}
@@ -385,7 +497,6 @@ function ReadmeModal({
   const [show, setShow] = useState(false);
   const [leaving, setLeaving] = useState(false);
 
-  // 애니메이션 시작
   useEffect(() => {
     const id = requestAnimationFrame(() => setShow(true));
     return () => cancelAnimationFrame(id);
@@ -428,14 +539,14 @@ function ReadmeModal({
   const CodeRenderer: React.FC<{ inline?: boolean; className?: string } & React.HTMLAttributes<HTMLElement>> = ({ inline, className, children, ...rest }) => {
     if (inline) {
       return (
-        <code className="px-1 py-0.5 rounded bg-gray-100 text-gray-900 font-mono" {...rest}>
+        <code className="px-1 py-0.5 rounded bg-gray-100 text-gray-900 font-readme font-normal" {...rest}>
           {children}
         </code>
       );
     }
     return (
       <pre className="p-3 rounded bg-gray-100 overflow-auto">
-        <code className={`text-gray-900 font-mono ${className ?? ""}`} {...rest}>
+        <code className={`text-gray-900 font-readme font-normal text-[13.5px] leading-6 ${className ?? ""}`} {...rest}>
           {children}
         </code>
       </pre>

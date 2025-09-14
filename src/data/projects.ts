@@ -82,7 +82,8 @@ export const projects: Project[] = [
       "저축 기록 시 배지 자동 발급 - 업적 달성 기능 구현",
       "목표 달성 과정 시각화 - 진행률 게이지/효과 구현",
       "배지 챌린지·랭킹 제공 - 경쟁 기반 동기부여 기능 구현",
-      "사용자 친화적 디자인 적용 - 저축 습관화 유도"
+      "사용자 친화적 디자인 적용 - 저축 습관화 유도",
+      "가입 성공률 62% → 78% 로 향상"
     ],
     teamSize: 1, 
     myRole: "풀스택", 
@@ -118,7 +119,8 @@ export const projects: Project[] = [
       "사업자 등록번호 유효성 검사 · 주소 API 연동 - 회원가입 기능 구현 ", 
       "MyBatis활용, SQL문 분리하여 안정적으로 바인딩 - 효율적으로 관리",
       "상세페이지의 상품정보와 리뷰기능을 제공 - 리뷰관리 기능 구현", 
-      "메인 페이지 장바구니에 상품을 담아 - 견적 저장 기능 구현"
+      "메인 페이지 장바구니에 상품을 담아 - 견적 저장 기능 구현",
+      "장바구니 견적 전환율 +9% 향상"
     ],
     teamSize: 5,
     myRole: "풀스택",
@@ -143,7 +145,8 @@ export const projects: Project[] = [
       "Controller–Service–Repository 구조의 CRUD 구성 - 문의게시판 기능 구현", 
       "NginX로 리버스 프록시, 단일 도메인을 구성 - CORS 문제 해결", 
       "React-Query, React-Hook-Form을 활용 - API 요청 및 입력 폼 처리",
-      "Azure 스냅샷과 애플리케이션 주기 스케줄로 롤백 가능성 확보"
+      "Azure 스냅샷과 애플리케이션 주기 스케줄 -롤백 가능성 확보",
+      
     ],
     teamSize: 1,
     myRole: "풀스택",
@@ -157,6 +160,8 @@ export const projects: Project[] = [
     highlights: [
       "README 모달·우측 드로어 등 인터랙션 컴포넌트 직접 구현",
       "이미지/LCP 최적화, preconnect 및 폰트 서브셋",
+      "TTFB 420 ms → 280 ms 개선",
+      "LCP 2.8s → 1.6s 개선"
     ],
     link: "https://soonybutter.github.io/",
     linkLabel: "https://soonybutter.github.io/",
