@@ -31,7 +31,6 @@ function resolveImg(src?: string) {
     return `${import.meta.env.BASE_URL}${src}`;
   }
 
-  // 그 밖의 경우(예: 'tik04.png' 같은 파일명만 온 경우):
   // Vite 빌드 산출물 위치를 가정해 assets/ 를 자동 접두
   return `${import.meta.env.BASE_URL}assets/${src.replace(/^\/+/, '')}`;
 }
@@ -410,14 +409,14 @@ function GalleryModal({
             <button
               type="button"
               onClick={() => safeNav(-1)}
-              className="absolute left-3 top-1/2 -translate-y-1/2 inline-flex items-center justify-center rounded-full p-2 hover:bg-gray-100 z-20"  // ← z-20 추가
+              className="absolute left-3 top-1/2 -translate-y-1/2 inline-flex items-center justify-center rounded-full p-2 hover:bg-gray-100 z-20"  
               aria-label="이전" title="이전"
             >
               <ChevronLeft size={22} />
             </button>
 
             {/* 드래그 시 흔들림/이동 효과 + 이미지가 버튼을 가리지 않게 */}
-            <div style={dragStyle} className="z-0 pointer-events-none">  {/* ← 추가 */}
+            <div style={dragStyle} className="z-0 pointer-events-none">  
               <FadingImage
                 src={resolved}
                 alt={current?.alt ?? `${title} screenshot ${index + 1}`}
@@ -427,7 +426,7 @@ function GalleryModal({
             <button
               type="button"
               onClick={() => safeNav(+1)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 inline-flex items-center justify-center rounded-full p-2 hover:bg-gray-100 z-20"  // ← z-20 추가
+              className="absolute right-3 top-1/2 -translate-y-1/2 inline-flex items-center justify-center rounded-full p-2 hover:bg-gray-100 z-20"  
               aria-label="다음" title="다음"
             >
               <ChevronRight size={22} />
@@ -511,7 +510,7 @@ function ReadmeModal({
     return () => document.removeEventListener("keydown", onKey);
   }, []);
 
-  // 배경 스크롤 잠금(레이아웃 점프 방지 포함)
+  // 배경 스크롤 잠금
   useEffect(() => {
     const prevOverflow = document.body.style.overflow;
     const prevPaddingRight = document.body.style.paddingRight;
