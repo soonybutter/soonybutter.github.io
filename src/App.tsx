@@ -34,7 +34,7 @@ export default function App() {
       </header>
 
 
-      {/* HERO */}
+      {/* HERO 타이핑 효과*/}
       <section className="mx-auto max-w-6xl px-4 pt-20 pb-14">
         <div className="mx-auto text-center">
           <h1 className="font-display text-3xl sm:text-4xl leading-[1.1] tracking-tight text-gray-900">
@@ -47,7 +47,7 @@ export default function App() {
               speed={75}        // 타이핑 속도
               lineDelay={600}   // 줄 전환 지연
               startDelay={150}  // 시작 지연
-              loop={false}
+              loop={false}      // 반복
               gap={25}
             />
           </h1>
