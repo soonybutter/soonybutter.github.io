@@ -1,0 +1,161 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Soonybutter · Portfolio</title>
+  <meta name="description" content="Developer portfolio of Soonybutter (Yang Dayeon): React + Spring Boot full‑stack projects, DevOps, databases, and fintech.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="container header">
+    <a class="brand" href="./">soony<span>butter</span></a>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#writing">Writing</a>
+      <a href="#contact" class="btn">Contact</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Hi, I'm <span class="accent">Yang Dayeon</span> — a product‑minded full‑stack developer.</h1>
+      <p class="lead">
+        I build web apps that help users do less, type less, and wait less. 
+        Recently focused on <strong>React + Spring Boot</strong>, secure sessions, OAuth, and performance.
+      </p>
+      <div class="actions">
+        <a class="btn" href="#projects">See Projects</a>
+        <a class="btn ghost" href="https://soonybutter.github.io/" target="_blank" rel="noopener">Korean Site</a>
+        <a class="btn ghost" href="https://github.com/soonybutter" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </section>
+
+    <section id="about" class="card">
+      <h2>About</h2>
+      <p>
+        I'm a developer who documents, measures, and iterates. I run a tech blog with 130+ posts on bug‑fixes, retrospectives,
+        and SQL tips. My recent work blends <strong>full‑stack development</strong> with <strong>DevOps</strong> on AWS/Azure,
+        and I love turning problem statements into measurable outcomes (e.g., <em>LCP −38%</em>, <em>signup conversion +16%</em>).
+      </p>
+      <ul class="ticks">
+        <li>Full‑stack: React (Vite), Spring Boot, OAuth 2.0, REST</li>
+        <li>DB/SQL: MySQL, Oracle, indexing & query tuning</li>
+        <li>Infra: Nginx reverse‑proxy, EC2/Azure VM, basic CI/CD</li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+
+      <article class="proj card">
+        <div class="proj-head">
+          <h3>Secure‑Tikkle — Gamified Savings App</h3>
+          <span class="pill">React · Spring Boot · OAuth 2.0 · MySQL</span>
+        </div>
+        <p>
+          Turn everyday frugality into goals. One‑click social logins (Kakao/Naver/Google), HttpOnly+Secure cookie sessions, and
+          image/code splitting for low‑end devices. Visual goal progress, friend challenges, and badges.
+        </p>
+        <ul class="bullets">
+          <li>Reduced LCP by <strong>38%</strong>; increased signup conversion by <strong>16%</strong>.</li>
+          <li>Designed goal setting, deposit records, ranking, and share‑to‑Kakao features.</li>
+          <li>Built with performance and session safety as defaults.</li>
+        </ul>
+        <div class="links">
+          <a href="#" aria-disabled="true">Live (coming soon)</a>
+          <a href="https://github.com/soonybutter" target="_blank" rel="noopener">Source</a>
+        </div>
+      </article>
+
+      <article class="proj card">
+        <div class="proj-head">
+          <h3>StarStarSuri — Home‑Repair Q&A/Inquiry Site</h3>
+          <span class="pill">React (Vite) · Nginx · REST · Pagination</span>
+        </div>
+        <p>
+          A responsive site for a local business to collect inquiries and manage posts. 
+          Nginx serves static assets and proxies <code>/api</code> to the backend; CORS hardened in production.
+        </p>
+        <ul class="bullets">
+          <li>Stable operations (5+ weeks) with zero CORS‑related 4xx/5xx incidents.</li>
+          <li>CRUD for posts/inquiries, list paging, and clean client routing.</li>
+        </ul>
+        <div class="links">
+          <a href="#" aria-disabled="true">Live (private)</a>
+          <a href="https://github.com/soonybutter" target="_blank" rel="noopener">Source</a>
+        </div>
+      </article>
+
+      <article class="proj card">
+        <div class="proj-head">
+          <h3>SelfTop — PC Parts Shopping Mall</h3>
+          <span class="pill">Spring Boot · MyBatis · Oracle · Team Project</span>
+        </div>
+        <p>
+          Implemented cart and quotation save features, applying indexes on hot join paths.
+          Built order flow with reliability and measured query performance.
+        </p>
+        <ul class="bullets">
+          <li>Team‑built e‑commerce features with proper 3‑layer architecture.</li>
+          <li>Optimized DB joins and added indexes for critical paths.</li>
+        </ul>
+        <div class="links">
+          <a href="#" aria-disabled="true">Demo (internal)</a>
+          <a href="https://github.com/soonybutter" target="_blank" rel="noopener">Source</a>
+        </div>
+      </article>
+    </section>
+
+    <section id="skills" class="card">
+      <h2>Skills</h2>
+      <div class="skill-grid">
+        <div><h4>Frontend</h4><p>React, Vite, TypeScript (basic), Axios, Router</p></div>
+        <div><h4>Backend</h4><p>Spring Boot, REST, OAuth2, JPA/MyBatis</p></div>
+        <div><h4>Database</h4><p>MySQL, Oracle, indexing, window functions</p></div>
+        <div><h4>Infra</h4><p>AWS EC2, Azure VM, Nginx, Linux basics, CI/CD (basics)</p></div>
+        <div><h4>Testing/Quality</h4><p>Postman, log‑driven debugging, metrics‑first mindset</p></div>
+        <div><h4>Languages</h4><p>Korean (native), English (working proficiency)</p></div>
+      </div>
+    </section>
+
+    <section id="writing" class="card">
+      <h2>Writing</h2>
+      <p>
+        I document learnings on my tech blog — retrospectives, SQL techniques, and full‑stack tips.
+        Consistent writing keeps my problem‑solving process transparent and repeatable.
+      </p>
+      <ul class="links-list">
+        <li><a href="https://soonybutter.github.io/" target="_blank" rel="noopener">Korean Blog</a></li>
+        <li><a href="https://github.com/soonybutter" target="_blank" rel="noopener">GitHub Repos</a></li>
+      </ul>
+    </section>
+
+    <section id="contact" class="card">
+      <h2>Contact</h2>
+      <p>Open to freelance/contract roles (remote). The fastest way to reach me:</p>
+      <ul class="contact">
+        <li>Email: <a href="mailto:soonybutter@example.com">soonybutter@example.com</a></li>
+        <li>LinkedIn: <a href="https://www.linkedin.com/" target="_blank" rel="noopener">/in/soonybutter</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <p>© <span id="year"></span> Yang Dayeon · Built with vanilla HTML/CSS on GitHub Pages.</p>
+    <div class="lang-toggle">
+      <a href="https://soonybutter.github.io/">KR</a>
+      <span> · </span>
+      <a href="./">EN</a>
+    </div>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>
