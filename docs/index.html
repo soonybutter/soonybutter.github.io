@@ -3,6 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function() {
+        var s = window.location.search;
+        if (!s) return;
+        var params = new URLSearchParams(s);
+        var p = params.get('p');
+        if (p) {
+          window.history.replaceState(null, null, p);
+        }
+      })();
+    </script>
+
     <title>양다연 포트폴리오</title>
 
     <!-- 기본 메타 -->
@@ -32,7 +44,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="/assets/index-ZSyeAo9Z.js"></script>
+    <script type="module" crossorigin src="/assets/index-DL5MeR0T.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-BgYOU6T0.css">
   </head>
   <body class="bg-white text-gray-900">
