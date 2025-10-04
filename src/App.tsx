@@ -23,16 +23,18 @@ export default function App() {
 
   const { t } = useTranslation();
 
-  const isEN = typeof window !== "undefined" && window.location.pathname.startsWith("/en");
-  const lang = isEN ? "en" : "ko";
+  const isENPath = typeof window !== "undefined" && /^\/en(\/|$)/.test(window.location.pathname);
+  const lang = isENPath ? "en" : "ko";
   const list = projects[lang];
 
   useEffect(() => {
-    const isEN = window.location.pathname.startsWith("/en");
-    i18n.changeLanguage(isEN ? "en" : "ko");
+    // ✅ 2) i18n 언어 변경 시에도 정규식 사용 + 이미 같은 언어면 스킵
+    const en = /^\/en(\/|$)/.test(window.location.pathname);
+    const target = en ? "en" : "ko";
+    if (i18n.language !== target) {
+      i18n.changeLanguage(target);
+    }
   }, []);
-
-
 
   return (
     <main className="font-sans">
