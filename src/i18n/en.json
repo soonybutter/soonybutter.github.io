@@ -1,0 +1,32 @@
+{
+  "meta": { "siteName": "Dayeon Yang Portfolio" },
+  "nav": { "about": "About", "skills": "Skills", "projects": "Projects", "contact": "Contact" },
+  "hero": {
+    "lines": ["Hello!", "I'm Dayeon Yang","a full-stack developer.", "I put user experience first."]
+  },
+  "about": {
+    "title": "ABOUT",
+    "altProfile": "Profile",
+    "nameValue": "Dayeon Yang",
+    "birthValue": "Feb 29, 2000",
+    "emailValue": "ydy229@naver.com",
+    "eduValue": "Jeonbuk National University (English Language & Literature / Computer Science)",
+    "academyValue": "[Hyundai Ezwel] Java Full-stack Developer Academy, 2nd cohort — Completed",
+    "certValue": "Engineer Information Processing"
+  },
+  "numbers": {
+    "awardLabel": "[Hyundai Ezwel] Java Full-stack Developer Academy\nProject Competition\nGrand Prize",
+    "blogKpi": "130+",
+    "blogLabel": "Tech blog posts",
+    "deployKpi": "4+",
+    "deployLabel": "Deployments (AWS/Azure)"
+  },
+  "contact": {
+    "title": "Contact",
+    "desc": "For inquiries, please contact us below. ☺️",
+    "emailBtn": "Email",
+    "githubBtn": "GitHub"
+  },
+  "footer": { "builtWith": "— Built with React • Vite • Tailwind" },
+  "projects": { "title": "Projects" }
+}

@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import i18n from "./i18n";
+import { useTranslation } from "react-i18next";
 import { Award, Book,  Cake, Home, ArrowRight, Github, Mail, Pencil,MapPin, Notebook, Rocket, User, Calendar, Phone, GraduationCap, IdCard } from "lucide-react"
 import Typewriter from "./components/Typewriter";
 import ProjectCard from "./components/ProjectCard"
@@ -17,6 +20,18 @@ const aboutItems = [
 ] as { icon: LucideIcon; label: string; value: string }[];
 
 export default function App() {
+
+  const { t } = useTranslation();
+
+  const isENPath = typeof window !== "undefined" && /^\/en(\/|$)/.test(window.location.pathname);
+  const lang = isENPath ? "en" : "ko";
+  const list = projects[lang];
+
+  useEffect(() => {
+    const target = isENPath ? "en" : "ko";
+    if (i18n.language !== target) i18n.changeLanguage(target);
+  }, []);
+
   return (
     <main className="font-sans">
       
@@ -25,10 +40,10 @@ export default function App() {
         <nav className="mx-auto max-w-6xl px-4 h-14 flex items-center justify-between">
           <a href="#" className="font-display text-4xl"></a>
           <div className="hidden sm:flex gap-6 text-sm">
-            <a href="#about" className="hover:underline">About</a>
-            <a href="#skills" className="hover:underline">Skills</a>
-            <a href="#projects" className="hover:underline">Projects</a>
-            <a href="#contact" className="hover:underline">Contact</a>
+            <a href="#about">{t("nav.about")}</a>
+            <a href="#skills">{t("nav.skills")}</a>
+            <a href="#projects">{t("nav.projects")}</a>
+            <a href="#contact">{t("nav.contact")}</a>
           </div>
         </nav>
       </header>
@@ -39,15 +54,11 @@ export default function App() {
         <div className="mx-auto text-center">
           <h1 className="font-display text-3xl sm:text-4xl leading-[1.1] tracking-tight text-gray-900">
             <Typewriter
-              lines={[
-                "안녕하세요!",
-                "사용자 경험을 최우선으로 생각하는",
-                "풀스택 개발자 양다연입니다."
-              ]}
-              speed={75}        // 타이핑 속도
-              lineDelay={600}   // 줄 전환 지연
-              startDelay={150}  // 시작 지연
-              loop={false}      // 반복
+              lines={t("hero.lines", { returnObjects: true }) as string[]}
+              speed={75}
+              lineDelay={600}
+              startDelay={150}
+              loop={false}
               gap={25}
             />
           </h1>
@@ -59,7 +70,7 @@ export default function App() {
       <Reveal as="section" id="about" className="mx-auto max-w-6xl px-4 py-16" once={false} duration={500}>
        <section id="about" className="mx-auto max-w-6xl px-4 py-16">
         <h2 className="font-display text-3xl md:text-4xl text-center tracking-widest">
-          ABOUT
+          {t("about.title")}
         </h2>
 
           
@@ -68,7 +79,7 @@ export default function App() {
               <div className="shrink-0 mx-auto sm:mx-0">
                 <img
                   src={profileImg}
-                  alt="프로필 사진"
+                  alt={t("about.altProfile")}
                   className="w-40 sm:w-48 aspect-[3/4] object-cover rounded-md"
                 />
               </div>
@@ -78,29 +89,29 @@ export default function App() {
             <ul className="space-y-3 text-gray-900">
               <li className="flex items-center gap-3">
                 <User size={18} className="shrink-0" />
-                <span>양다연</span>
+                <span>{t("about.nameValue")}</span>
               </li>
               <li className="flex items-center gap-3">
                 <Cake size={18} className="shrink-0" />
-                <span>2000. 02. 29</span>
+                <span>{t("about.birthValue")}</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={18} className="shrink-0" />
                 <a href="mailto:ydy229@naver.com" className="hover:underline">
-                  ydy229@naver.com
+                  {t("about.emailValue")}
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <GraduationCap size={18} className="shrink-0" />
-                <span>전북대학교 ( 영어영문학 / (부) 컴퓨터공학 )</span>
+                <span>{t("about.eduValue")}</span>
               </li>
               <li className="flex items-center gap-3">
                 <Pencil size={18} className="shrink-0" />
-                <span>[현대이지웰] Java 풀스택 개발자 아카데미 2회차 수료 </span>
+                <span>{t("about.academyValue")} </span>
               </li>
               <li className="flex items-center gap-3">
                 <IdCard size={18} className="shrink-0" />
-                <span>정보처리기사</span>
+                <span>{t("about.certValue")}</span>
               </li>
             </ul>
 
@@ -162,13 +173,11 @@ export default function App() {
           <div className="rounded-3xl border shadow-soft p-6  from-gray-30 to-white">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <AwardCard
-                label={`[현대이지웰] Java 풀스택 개발자 아카데미
-                        프로젝트 경진대회
-                        최우수상`}
+                label={t("numbers.awardLabel")}
                 size="sm"
               />
-              <Stat kpi="130+" label="기술 블로그 포스트" size="md" href="https://soonybutter.tistory.com/" />
-              <Stat kpi="4+"   label="배포 경험(AWS/Azure)" size="md" href="#projects" />
+              <Stat kpi={t("numbers.blogKpi")} label={t("numbers.blogLabel")} size="md" href="https://soonybutter.tistory.com/" />
+              <Stat kpi={t("numbers.deployKpi")}   label={t("numbers.deployLabel")} size="md" href="#projects" />
             </div>
           </div>
         </section>
@@ -203,8 +212,8 @@ export default function App() {
             <div className="mx-auto max-w-5xl px-4 py-16">
               <h2 className="font-display text-4xl text-center w-full">Projects</h2>
             <div className="mt-8 grid grid-cols-1 gap-6 max-w-3xl mx-auto">
-              {projects.map((p, i) => (
-                <ProjectCard key={p.title} p={p}/>
+              {list.map((p) => (
+                <ProjectCard key={p.title} p={p} />
               ))}
             </div>
             </div>
@@ -215,15 +224,15 @@ export default function App() {
       {/* CONTACT */}
       <Reveal as="section" id="contact" className="mx-auto max-w-6xl px-4 py-16 " once={false} delay={120}>
         <section id="contact" className="mx-auto max-w-6xl px-4 py-16 font-title">
-          <h2 className="font-display text-4xl text-center">Contact</h2>
+          <h2 className="font-display text-4xl text-center">{t("contact.title")}</h2>
           <div className="mt-10 text-gray-700 text-center">
-            <p>문의사항은 아래로 연락 주시면 감사하겠습니다. ☺️</p>
+            <p>{t("contact.desc")}</p>
             <div className="mt-6 flex justify-center gap-4 text-sm">
-              <a className="inline-flex items-center gap-2 hover:underline" href="mailto:ydy229@naver.com">
-                <Mail size={16}/> ydy229@naver.com
+              <a className="inline-flex items-center gap-2 hover:underline" href="mailto:ydy229@naver.com" aria-label={t("contact.emailBtn")}>
+                <Mail size={16}/> {t("contact.emailBtn")}
               </a>
-              <a className="inline-flex items-center gap-2 hover:underline" href="https://github.com/soonybutter" target="_blank" rel="noreferrer">
-                <Github size={16}/> GitHub
+              <a className="inline-flex items-center gap-2 hover:underline" href="https://github.com/soonybutter" target="_blank" rel="noreferrer" aria-label={t("contact.githubBtn")}>
+                <Github size={16}/> {t("contact.githubBtn")}
               </a>
             </div>
               
@@ -234,7 +243,7 @@ export default function App() {
 
       {/* FOOTER */}
       <footer className="py-10 text-center text-xs text-gray-500">
-        © {new Date().getFullYear()} Yang Dayeon — Built with React • Vite • Tailwind
+        © {new Date().getFullYear()} Yang Dayeon {t("footer.builtWith")}
       </footer>
     </main>
   )
