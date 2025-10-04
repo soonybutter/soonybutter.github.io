@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const OUT = "docs"; // ← Vite outDir
+const OUT = "docs"; // Vite outDir과 동일
 const SRC_INDEX = path.join(OUT, "index.html");
 const DEST_404 = path.join(OUT, "404.html");
 const DEST_EN_DIR = path.join(OUT, "en");
@@ -16,7 +16,7 @@ if (!fs.existsSync(OUT)) {
   process.exit(1);
 }
 
-// 404.html (선택: 없어도 되지만 있으면 SPA fallback에 유용)
+// 404.html (선택)
 try {
   fs.copyFileSync(SRC_INDEX, DEST_404);
   console.log(`[postbuild] Copied ${SRC_INDEX} -> ${DEST_404}`);
