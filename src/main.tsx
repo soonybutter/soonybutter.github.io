@@ -11,6 +11,8 @@ import faviconUrl from './assets/icon3.png'
 function applyFavicon(href: string) {
   document.querySelectorAll('link[rel="icon"]').forEach(el => el.remove())
 
+  
+
   const link = document.createElement('link')
   link.rel = 'icon'
   link.type = 'image/png'
@@ -25,6 +27,10 @@ function applyFavicon(href: string) {
 }
 
 applyFavicon(faviconUrl)
+
+const isEN = /^\/en(\/|$)/i.test(window.location.pathname);
+const target = isEN ? "en" : "ko";
+if (i18n.language !== target) i18n.changeLanguage(target);
 
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
