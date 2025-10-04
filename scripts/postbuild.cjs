@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const OUT = "docs"; // ← 빌드 출력 폴더
+const OUT = "docs"; // ← Vite outDir
 const SRC_INDEX = path.join(OUT, "index.html");
 const DEST_404 = path.join(OUT, "404.html");
 const DEST_EN_DIR = path.join(OUT, "en");
@@ -16,7 +16,7 @@ if (!fs.existsSync(OUT)) {
   process.exit(1);
 }
 
-// 1) 404.html (index.html 복사)
+// 404.html (선택: 없어도 되지만 있으면 SPA fallback에 유용)
 try {
   fs.copyFileSync(SRC_INDEX, DEST_404);
   console.log(`[postbuild] Copied ${SRC_INDEX} -> ${DEST_404}`);
@@ -24,7 +24,7 @@ try {
   console.warn("[postbuild] 404 복사 실패:", e.message);
 }
 
-// 2) en/index.html (정적 라우트 보장)
+// en/index.html (★ 핵심)
 ensure(DEST_EN_DIR);
 fs.copyFileSync(SRC_INDEX, DEST_EN_INDEX);
 console.log(`[postbuild] Copied ${SRC_INDEX} -> ${DEST_EN_INDEX}`);
