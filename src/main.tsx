@@ -32,7 +32,6 @@ const isEN = /^\/en(\/|$)/i.test(window.location.pathname);
 const target = isEN ? "en" : "ko";
 if (i18n.language !== target) i18n.changeLanguage(target);
 
-
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <I18nextProvider i18n={i18n}>
