@@ -1,0 +1,32 @@
+{
+  "meta": { "siteName": "양다연 포트폴리오" },
+  "nav": { "about": "About", "skills": "Skills", "projects": "Projects", "contact": "Contact" },
+  "hero": {
+    "lines": ["안녕하세요!", "사용자 경험을 최우선으로 생각하는", "풀스택 개발자 양다연입니다."]
+  },
+  "about": {
+    "title": "ABOUT",
+    "altProfile": "프로필 사진",
+    "nameValue": "양다연",
+    "birthValue": "2000. 02. 29",
+    "emailValue": "ydy229@naver.com",
+    "eduValue": "전북대학교 ( 영어영문학 / (부) 컴퓨터공학 )",
+    "academyValue": "[현대이지웰] Java 풀스택 개발자 아카데미 2회차 수료",
+    "certValue": "정보처리기사"
+  },
+  "numbers": {
+    "awardLabel": "[현대이지웰] Java 풀스택 개발자 아카데미\n프로젝트 경진대회\n최우수상",
+    "blogKpi": "130+",
+    "blogLabel": "기술 블로그 포스트",
+    "deployKpi": "4+",
+    "deployLabel": "배포 경험(AWS/Azure)"
+  },
+  "contact": {
+    "title": "Contact",
+    "desc": "문의사항은 아래로 연락 주시면 감사하겠습니다. ☺️",
+    "emailBtn": "이메일",
+    "githubBtn": "GitHub"
+  },
+  "footer": { "builtWith": "— Built with React • Vite • Tailwind" },
+  "projects": { "title": "Projects" }
+}
