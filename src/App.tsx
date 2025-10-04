@@ -8,6 +8,7 @@ import { projects } from "./data/projects"
 import type { LucideIcon } from "lucide-react";
 import profileImg from "./assets/profile.jpg";
 import Reveal from"./components/Reveal";
+import LangSwitch from "./components/LangSwitch";
 
 const aboutItems = [
   { icon: Calendar,       label: "생년월일", value: "2000.02.29" },
@@ -44,6 +45,11 @@ export default function App() {
             <a href="#skills">{t("nav.skills")}</a>
             <a href="#projects">{t("nav.projects")}</a>
             <a href="#contact">{t("nav.contact")}</a>
+
+            {/* 구분선 + 언어 스위치 */}
+            <span className="h-5 w-px bg-gray-300" aria-hidden />
+            <LangSwitch />
+
           </div>
         </nav>
       </header>
