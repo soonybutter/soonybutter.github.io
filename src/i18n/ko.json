@@ -10,9 +10,10 @@
     "nameValue": "양다연",
     "birthValue": "2000. 02. 29",
     "emailValue": "ydy229@naver.com",
-    "eduValue": "전북대학교 ( 영어영문학 / (부) 컴퓨터공학 )",
+    "eduValue": "전북대학교 영어영문학과 / (부) 컴퓨터공학과 졸업",
     "academyValue": "[현대이지웰] Java 풀스택 개발자 아카데미 2회차 수료",
-    "certValue": "정보처리기사"
+    "certValue1": "정보처리기사",
+    "certValue2":"SQL 개발자 (SQLD)"
   },
   "numbers": {
     "awardLabel": "[현대이지웰] Java 풀스택 개발자 아카데미\n프로젝트 경진대회\n최우수상",

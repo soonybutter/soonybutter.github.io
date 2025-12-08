@@ -12,7 +12,8 @@
     "emailValue": "ydy229@naver.com",
     "eduValue": "Jeonbuk National University (English Language & Literature / Computer Science)",
     "academyValue": "[Hyundai Ezwel] Java Full-stack Developer Academy, 2nd cohort — Completed",
-    "certValue": "Engineer Information Processing"
+    "certValue1": "Engineer Information Processing",
+    "certValue2":"SQL Developer (SQLD)"
   },
   "numbers": {
     "awardLabel": "[Hyundai Ezwel] Java Full-stack Developer Academy\nProject Competition\nGrand Prize",

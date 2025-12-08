@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import i18n from "./i18n";
 import { useTranslation } from "react-i18next";
 import { Award, Book,  Cake, Home, ArrowRight, Github, Mail, Pencil,MapPin, Notebook, Rocket, User, Calendar, Phone, GraduationCap, IdCard } from "lucide-react"
@@ -34,7 +34,7 @@ export default function App() {
   }, []);
 
   return (
-    <main className="font-sans">
+    <main className="font-sans pb-20">
       
       {/* NAV */}
       <header className="sticky top-0 z-50 backdrop-blur bg-white/70 border-b">
@@ -52,6 +52,13 @@ export default function App() {
 
           </div>
         </nav>
+
+        {/* Floating LangSwitch for mobile */}
+        <div className="sm:hidden fixed top-3 right-3 z-50">
+          <div className="rounded-full border bg-white/80 backdrop-blur px-3 py-1">
+            <LangSwitch />
+          </div>
+        </div>
       </header>
 
 
@@ -73,7 +80,7 @@ export default function App() {
       
 
       {/* ABOUT  */}
-      <Reveal as="section" id="about" className="mx-auto max-w-6xl px-4 py-16" once={false} duration={500}>
+      <Reveal as="section" id="about" className="mx-auto max-w-6xl px-4 py-16 scroll-mt-20 sm:scroll-mt-24" once={false} duration={500}>
        <section id="about" className="mx-auto max-w-6xl px-4 py-16">
         <h2 className="font-display text-3xl md:text-4xl text-center tracking-widest">
           {t("about.title")}
@@ -117,7 +124,11 @@ export default function App() {
               </li>
               <li className="flex items-center gap-3">
                 <IdCard size={18} className="shrink-0" />
-                <span>{t("about.certValue")}</span>
+                <span>{t("about.certValue1")}</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <IdCard size={18} className="shrink-0" />
+                <span>{t("about.certValue2")}</span>
               </li>
             </ul>
 
@@ -213,17 +224,23 @@ export default function App() {
       
 
       {/* PROJECTS */}
-      <Reveal as="section" id="projects" className="bg-gray-50 border-y once={false}">
-          <section id="projects" className="bg-gray-50 border-y">
-            <div className="mx-auto max-w-5xl px-4 py-16">
-              <h2 className="font-display text-4xl text-center w-full">Projects</h2>
+      <Reveal
+        as="section"
+        id="projects"
+        className="bg-gray-50 border-y scroll-mt-20 sm:scroll-mt-24"
+        once={false}      
+      >
+        
+        <section className="bg-gray-50 border-y">
+          <div className="mx-auto max-w-5xl px-4 py-16">
+            <h2 className="font-display text-4xl text-center w-full">Projects</h2>
             <div className="mt-8 grid grid-cols-1 gap-6 max-w-3xl mx-auto">
               {list.map((p) => (
                 <ProjectCard key={p.title} p={p} />
               ))}
             </div>
-            </div>
-          </section>
+          </div>
+        </section>
       </Reveal>
       
 
@@ -251,6 +268,8 @@ export default function App() {
       <footer className="py-10 text-center text-xs text-gray-500">
         © {new Date().getFullYear()} Yang Dayeon {t("footer.builtWith")}
       </footer>
+
+      <MobileNav t={t} />
     </main>
   )
 }
@@ -349,6 +368,8 @@ function SkillGroup({
   );
 }
 
+
+
 function InfoItem({
   Icon,
   label,
@@ -368,5 +389,94 @@ function InfoItem({
         <div className="text-gray-600 mt-1 leading-relaxed">{value}</div>
       </div>
     </div>
+  );
+}
+
+function MobileNav({ t }: { t: (k: string) => string }) {
+  const items = [
+    { id: "about",    label: t("nav.about"),    Icon: User },
+    { id: "skills",   label: t("nav.skills"),   Icon: Book },
+    { id: "projects", label: t("nav.projects"), Icon: Rocket },
+    { id: "contact",  label: t("nav.contact"),  Icon: Mail },
+  ];
+
+  const [active, setActive] = useState<string>("about");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+    (entries) => {
+      // "가장 많이 보이는 섹션"을 활성화
+      const visible = entries.filter((e) => e.isIntersecting);
+      if (!visible.length) return;
+      visible.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+      const top = visible[0];
+      const id = (top.target as HTMLElement).id;
+      if (id) setActive(id);
+    },
+    {
+      // 화면 중앙 기준 감지 (sticky 헤더 대응)
+      rootMargin: "-50% 0px -50% 0px",
+      threshold: [0, 0.01, 0.25, 0.5, 0.75, 1],
+    }
+  );
+
+    items.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const smoothScrollTo = (id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    // 상단 고정 헤더 보정
+    const headerOffset = 64;
+    const y = el.getBoundingClientRect().top + window.scrollY - headerOffset;
+    window.scrollTo({ top: y, behavior: "smooth" });
+  };
+
+  return (
+    <nav
+      className="
+        sm:hidden fixed bottom-0 inset-x-0 z-50
+        border-t bg-white/80 backdrop-blur
+        pb-[env(safe-area-inset-bottom)] 
+      "
+      role="navigation"
+      aria-label="Mobile"
+    >
+      <ul className="mx-auto max-w-6xl grid grid-cols-4">
+        {items.map(({ id, label, Icon }) => {
+          const isActive = active === id;
+          return (
+            <li key={id} className="flex">
+              <button
+                onClick={() => smoothScrollTo(id)}
+                className={`
+                  flex-1 py-2.5 flex flex-col items-center justify-center gap-1.5
+                  text-xs
+                  ${isActive ? "text-[#db3281] font-medium" : "text-gray-600"}
+                  active:scale-95 transition
+                `}
+                aria-label={label}
+              >
+                <Icon size={22} aria-hidden="true" className={isActive ? "" : "opacity-80"} />
+                <span className="leading-none">{label}</span>
+                {/* 활성 탭 인디케이터 */}
+                <span
+                  aria-hidden="true"
+                  className={`
+                    mt-1 h-0.5 w-6 rounded-full
+                    ${isActive ? "bg-[#db3281]" : "bg-transparent"}
+                  `}
+                />
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
   );
 }

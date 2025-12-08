@@ -59,6 +59,8 @@ export default function ProjectCard({ p }: { p: Project }) {
   const stack = Array.isArray(p.stack) ? p.stack : [];
   const highlights = Array.isArray(p.highlights) ? p.highlights : [];
 
+  const isEN = typeof window !== "undefined" && /^\/en(\/|$)/.test(location.pathname);
+
   return (
     <>
       <div className="relative group rounded-2xl p-5 pb-16 bg-white/70 hover:bg-white ring-1 ring-gray-200 hover:ring-gray-300 shadow-soft transition-all duration-300 flex flex-col font-title">
@@ -71,7 +73,8 @@ export default function ProjectCard({ p }: { p: Project }) {
               {p.period && <div>{p.period}</div>}
               {typeof people === "number" && people > 0 && (
                 <div className="inline-flex items-center gap-1 text-gray-600">
-                  <Users size={14} /> {people}명
+                  <Users size={14} />
+                  {isEN ? `${people} (Team Size)` : `${people}명`}
                 </div>
               )}
             </div>
@@ -172,7 +175,7 @@ export default function ProjectCard({ p }: { p: Project }) {
                          focus:outline-none focus:ring-2 focus:ring-[#ff69b4]/60 focus:ring-offset-2"
             >
               <ImageIcon size={16} aria-hidden="true" />
-              <span className="uppercase tracking-wide">이미지</span>
+              <span className="uppercase tracking-wide">{isEN ? "Image" : "이미지"}</span>
             </button>
           )}
 
