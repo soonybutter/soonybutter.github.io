@@ -1,4 +1,4 @@
-# 🛒 SelfTop — Cart-centric Custom PC Store
+# SelfTop — Cart-centric Custom PC Store
 ## 📌 Summary
 
 - **An e-commerce site** that maximizes cart usage so beginners can easily create quotes and purchase custom PCs.
@@ -19,7 +19,7 @@
 
 - **Won the Grand Prize at the project competition**
 
-## 🤔 Problem / Solution
+## 🔨 Problem / Solution
 
 We needed verifiable sign-ups/review trust and a stable path from cart to quotation.
 It also had to be friendly for beginners, so we focused on a user-centric service.

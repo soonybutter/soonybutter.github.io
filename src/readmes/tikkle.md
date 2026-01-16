@@ -1,6 +1,6 @@
 # 💰 티끌 — 챌린지형 저축 목표 관리 앱
 
-## 📌 요약
+## 🔨 소개
 
 “택시 대신 버스 타기”, "커피 값 아끼기" 처럼 일상에서 아낀 금액을 가상 저축으로 기록하고,
 
@@ -21,10 +21,9 @@
 
 - **LCP 3.4s 에서 2.1s 로 개선, 초기 화면 전송량 -32%을 달성**
 
-- **빌드 시간 6.07s(469 modules)를 유지**
 
 
-## 🤔 문제 / 해결 
+## 🔨 문제 / 해결 
 
 사용자가 일상 속 저축을 상기하고, 습관화 하도록 일상 친화 서비스를 출시해야 했습니다.
 
@@ -59,42 +58,3 @@
 
 https://mytikkle.space
 
-
-
-## ⚙️ Setup 
-```bash
-#[Backend]
-# 1) Clone
-git clone https://github.com/soonybutter/tikkle_BE.git
-cd tikkle_BE
-
-# 2) Local 실행 (MySQL 준비)
-./gradlew bootRun --args="--spring.profiles.active=local"
-
-# 3) Prod 빌드/실행 (서버)
-./gradlew bootJar
-java -jar build/libs/*.jar --spring.profiles.active=prod
-
-#[Frontend]
-# 1) Clone
-git clone https://github.com/soonybutter/tikkle_FE.git
-cd tikkle_FE
-
-# 2) 패키지 설치
-npm install
-
-# 3) 환경 변수 (.env)
-# 개발
-VITE_API_BASE=http://localhost:8080
-VITE_SERVICE_URL=http://localhost:5173
-# 배포(프록시 운용 시 예시)
-# VITE_API_BASE=https://mytikkle.space
-# VITE_SERVICE_URL=https://mytikkle.space
-
-# 4) 개발 서버
-npm run dev
-
-# 5) 빌드 & 배포(정적 파일 동기화 예시: Azure VM)
-npm run build
-# 서버에서
-sudo rsync -av --delete dist/ /var/www/tikkle/

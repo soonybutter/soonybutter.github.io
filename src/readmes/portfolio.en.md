@@ -17,7 +17,7 @@
 
 - Deployed via GitHub Actions
 
-## 🚀 Implementation
+## 🔨 Implementation
 
 - **Responsive & image optimization:** cover/contain, lazy loading
 

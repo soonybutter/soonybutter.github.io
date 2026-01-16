@@ -1,5 +1,5 @@
-# 🌟 StarStarSuri — Company Intro & Inquiry Web Service
-## 📌 Summary
+# StarStarSuri — Company Intro & Inquiry Web Service
+## 🔨 Summary
 
 Implemented a small-business website that provides board/inquiry features.
 
@@ -19,7 +19,7 @@ Implemented a small-business website that provides board/inquiry features.
 
 - **Maintained RTO ≤ 30 minutes**
 
-## 🤔 Problem / Solution
+## 🔨 Problem / Solution
 
 We started this project to help a local home-repair business.
 We needed to convey company information clearly and make it easy for customers to leave inquiries.

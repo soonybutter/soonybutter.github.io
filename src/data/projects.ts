@@ -17,9 +17,14 @@ import selftop15 from "../assets/projects/selftop/selftop15.png";
 import selftop16 from "../assets/projects/selftop/selftop16.png";
 import suri00 from "../assets/projects/starstarsuri/suri00.png";
 import suri01 from "../assets/projects/starstarsuri/suri01.png";
-import suri02 from "../assets/projects/starstarsuri/suri02.png";
+import request1 from "../assets/projects/starstarsuri/request1.png";
 import suri03 from "../assets/projects/starstarsuri/suri03.png";
-import suri04 from "../assets/projects/starstarsuri/suri04.png";
+import r2 from "../assets/projects/starstarsuri/r2.jpg";
+import r3 from "../assets/projects/starstarsuri/r3.jpg";
+import r4 from "../assets/projects/starstarsuri/r4.jpg";
+import kakaologin1 from "../assets/projects/starstarsuri/kakaologin1.jpg";
+import owner1 from "../assets/projects/starstarsuri/owner1.jpg";
+import owner2 from "../assets/projects/starstarsuri/owner2.jpg";
 import tik00 from "../assets/projects/tikkle/tik00.png";
 import tik01 from "../assets/projects/tikkle/tik01.png";
 import tik02 from "../assets/projects/tikkle/tik02.png";
@@ -69,46 +74,36 @@ export type Project = {
 export const projects: Record<"ko" | "en", Project[]> = {
   ko: [
     {
-      title: "티끌",
-      summary:
-        "일상 속에서 아낀 돈을 '가상 저축'하여, 특정 목표 금액 달성을 게임처럼 즐기는 서비스",
-      link: "https://mytikkle.space/",
-      linkLabel: "https://mytikkle.space/",
-      stack: ["React , TypeScript , Spring Boot , MySQL , OAuth2 , Gradle"],
-      images: [
-        { src: tik00, alt: "페이지1", caption: "인트로 페이지" },
-        { src: tik01, alt: "페이지2", caption: "로그인 후 메인 페이지" },
-        { src: tik02, alt: "페이지3", caption: "로그인 후 메인 페이지" },
-        {
-          src: tik03,
-          alt: "페이지4",
-          caption: "티끌 기록 상세페이지 - 저축 로그 관리 기능",
-        },
-        { src: tik04, alt: "페이지5", caption: "티끌 기록 목록 페이지" },
-        { src: tik05, alt: "페이지6", caption: "새 목표 만들기" },
-        {
-          src: tik06,
-          alt: "페이지7",
-          caption: "배지 현황 페이지 - 달성 시 컨페티 !",
-        },
-        {
-          src: tik07,
-          alt: "페이지8",
-          caption: "그룹 생성 및 초대 - 친구 초대 / 그룹 내 랭킹 제공",
-        },
+      title: "별별집수리",
+      summary: "집수리 소상공인 웹 사이트 제작",
+      link: "https://starstatsuri.site/",
+      linkLabel: "https://starstatsuri.site/",
+      linkBelowSummary: true,
+      stack: [
+        "React ,  Spring Boot ,  JPA ,  MySQL ,  CRUD구현 ,  Maven ,  Azure VM ,  Axios",
       ],
-      period: "2025.07 - 2025.09",
+      images: [
+        { src: suri00, alt: "메인 페이지", caption: "메인 페이지 1" },
+        { src: suri03, alt: "메인 페이지", caption: "메인 페이지 2" },
+        { src: suri01, alt: "상세 페이지", caption: "사장님 작업 포트폴리오" },
+        { src: request1, alt: "게시판", caption: "문의 게시판" },
+        { src: r2, alt: "문의", caption: "문의 내역" },
+        { src: r3, alt: "문의 ", caption: "문의 상세 페이지" },
+        { src: r4, alt: "문의 ", caption: "사장님 답글이 작성된 모습" },
+        { src: kakaologin1, alt: "카카오 로그인", caption: "사장님 전용 문의 관리 기능" },
+        { src: owner1, alt: "사장님", caption: "사장님은 문의에 답변이 가능합니다." },
+        { src: owner2, alt: "사장님 전용 기능", caption: "사장님은 문의에 답변이 가능합니다." },
+      ],
+      period: "2024.06 - 2024.08 + 2025.06 리팩토링",
       highlights: [
-        "카카오·네이버·구글 OAuth 연동 - 소셜 로그인 기능 구현",
-        "저축 기록 시 배지 자동 발급 - 업적 달성 기능 구현",
-        "목표 달성 과정 시각화 - 진행률 게이지/효과 구현",
-        "배지 챌린지·랭킹 제공 - 경쟁 기반 동기부여 기능 구현",
-        "사용자 친화적 디자인 적용 - 저축 습관화 유도",
-        "가입 성공률 62% → 78% 로 향상",
+        "Controller–Service–Repository 구조의 CRUD 구성 - 문의게시판 기능 구현",
+        "NginX 리버스 프록시로 단일 도메인 구성 - CORS 문제 해결",
+        "React-Query, React-Hook-Form 활용 - API 요청 및 입력 폼 처리",
+        "Kakao OAuth2 로그인 연동 및 권한 기반 기능 분리 - 사장님/고객 전용 플로우 구현",
       ],
       teamSize: 1,
       myRole: "풀스택",
-      readme: tikkleReadmeKo,
+      readme: starReadmeKo,
     },
     {
       title: "셀프탑",
@@ -200,32 +195,48 @@ export const projects: Record<"ko" | "en", Project[]> = {
       readme: selftopReadmeKo,
     },
     {
-      title: "별별집수리",
-      summary: "집수리 소상공인 웹 사이트 제작",
-      link: "https://starstatsuri.site/",
-      linkLabel: "https://starstatsuri.site/",
-      linkBelowSummary: true,
-      stack: [
-        "React ,  Spring Boot ,  JPA ,  MySQL ,  CRUD구현 ,  Maven ,  Azure VM ,  Axios",
-      ],
+      title: "티끌",
+      summary:
+        "일상 속에서 아낀 돈을 '가상 저축'하여, 특정 목표 금액 달성을 게임처럼 즐기는 서비스",
+      link: "https://mytikkle.space/",
+      linkLabel: "https://mytikkle.space/",
+      stack: ["React , TypeScript , Spring Boot , MySQL , OAuth2 , Gradle"],
       images: [
-        { src: suri00, alt: "메인 페이지", caption: "메인 페이지 1" },
-        { src: suri03, alt: "메인 페이지", caption: "메인 페이지 2" },
-        { src: suri01, alt: "상세 페이지", caption: "상세 페이지" },
-        { src: suri02, alt: "게시판", caption: "문의 게시판" },
-        { src: suri04, alt: "문의 수정 및 삭제하기", caption: "문의 관리" },
+        { src: tik00, alt: "페이지1", caption: "인트로 페이지" },
+        { src: tik01, alt: "페이지2", caption: "로그인 후 메인 페이지" },
+        { src: tik02, alt: "페이지3", caption: "로그인 후 메인 페이지" },
+        {
+          src: tik03,
+          alt: "페이지4",
+          caption: "티끌 기록 상세페이지 - 저축 로그 관리 기능",
+        },
+        { src: tik04, alt: "페이지5", caption: "티끌 기록 목록 페이지" },
+        { src: tik05, alt: "페이지6", caption: "새 목표 만들기" },
+        {
+          src: tik06,
+          alt: "페이지7",
+          caption: "배지 현황 페이지 - 달성 시 컨페티 !",
+        },
+        {
+          src: tik07,
+          alt: "페이지8",
+          caption: "그룹 생성 및 초대 - 친구 초대 / 그룹 내 랭킹 제공",
+        },
       ],
-      period: "2024.06 - 2024.08 + 2025.06 리팩토링",
+      period: "2025.07 - 2025.12",
       highlights: [
-        "Controller–Service–Repository 구조의 CRUD 구성 - 문의게시판 기능 구현",
-        "NginX 리버스 프록시로 단일 도메인 구성 - CORS 문제 해결",
-        "React-Query, React-Hook-Form 활용 - API 요청 및 입력 폼 처리",
-        "Azure 스냅샷과 애플리케이션 주기 스케줄 - 롤백 가능성 확보",
+        "카카오·네이버·구글 OAuth 연동 - 소셜 로그인 기능 구현",
+        "저축 기록 시 배지 자동 발급 - 업적 달성 기능 구현",
+        "목표 달성 과정 시각화 - 진행률 게이지/효과 구현",
+        "배지 챌린지·랭킹 제공 - 경쟁 기반 동기부여 기능 구현",
+        "사용자 친화적 디자인 적용",
+        "가입 성공률 62% → 78% 향상",
       ],
       teamSize: 1,
       myRole: "풀스택",
-      readme: starReadmeKo,
+      readme: tikkleReadmeKo,
     },
+    
     {
       title: "포트폴리오 웹사이트",
       period: "2025.08 – 2025.09",
@@ -245,42 +256,37 @@ export const projects: Record<"ko" | "en", Project[]> = {
 
   en: [
     {
-      title: "Tikkle",
-      summary:
-        "A service that turns money saved in everyday life into 'virtual savings' so you can enjoy reaching a target amount like a game.",
-      link: "https://mytikkle.space/",
-      linkLabel: "https://mytikkle.space/",
-      stack: ["React, TypeScript, Spring Boot, MySQL, OAuth2, Gradle"],
-      images: [
-        { src: tik00, alt: "Intro page", caption: "Intro page" },
-        { src: tik01, alt: "Main after login", caption: "Main page after login" },
-        { src: tik02, alt: "Main after login", caption: "Main page after login" },
-        {
-          src: tik03,
-          alt: "Saving log details",
-          caption: "Saving log details — manage your saving logs",
-        },
-        { src: tik04, alt: "Saving log list", caption: "Saving log list" },
-        { src: tik05, alt: "Create goal", caption: "Create a new goal" },
-        { src: tik06, alt: "Badges", caption: "Badges overview — confetti on success!" },
-        {
-          src: tik07,
-          alt: "Groups & invites",
-          caption: "Create/invite groups — friend invites & in-group ranking",
-        },
+      title: "Starstar Home Repair",
+      summary: "A website for a local home-repair small business.",
+      link: "https://starstatsuri.site/",
+      linkLabel: "https://starstatsuri.site/",
+      linkBelowSummary: true,
+      stack: [
+        "React, Spring Boot, JPA, MySQL, CRUD, Maven, Azure VM, Axios",
       ],
-      period: "2025.07 – 2025.09",
+      images: [
+      { src: suri00, alt: "Main page", caption: "Main Page 1" },
+      { src: suri03, alt: "Main page", caption: "Main Page 2" },
+      { src: suri01, alt: "Detail page", caption: "Owner's Work Portfolio" },
+      { src: request1, alt: "Inquiry board", caption: "Inquiry Board" },
+      { src: r2, alt: "Inquiry list", caption: "Inquiry History" },
+      { src: r3, alt: "Inquiry details", caption: "Inquiry Detail Page" },
+      { src: r4, alt: "Owner reply", caption: "View with Owner's Reply" },
+      { src: kakaologin1, alt: "Kakao login", caption: "Owner-Only Inquiry Management" },
+      { src: owner1, alt: "Owner features", caption: "The owner can reply to inquiries." },
+      { src: owner2, alt: "Owner-only features", caption: "The owner can reply to inquiries." },
+
+      ],
+      period: "2024.06 – 2024.08 (refactoring in 2025.06-07)",
       highlights: [
-        "Social login via Kakao/Naver/Google OAuth",
-        "Auto-issue badges on saving logs — achievements system",
-        "Visualized progress to the target — progress gauge/effects",
-        "Badge challenges & ranking — competition-driven motivation",
-        "UX first design to build savings habits",
-        "Sign-up success improved 62% → 78%",
+        "CRUD with Controller–Service–Repository — Q&A board implemented",
+        "Single domain via Nginx reverse proxy — resolved CORS issues",
+        "React Query + React Hook Form — API requests and forms",
+        "Azure snapshots + app lifecycle schedule — safe rollback ready",
       ],
       teamSize: 1,
       myRole: "Full-stack",
-      readme: tikkleReadmeEn,
+      readme: starReadmeEn,
     },
     {
       title: "SelfTop",
@@ -375,33 +381,46 @@ export const projects: Record<"ko" | "en", Project[]> = {
       myRole: "Full-stack",
       readme: selftopReadmeEn,
     },
+    
     {
-      title: "Starstar Home Repair",
-      summary: "A website for a local home-repair small business.",
-      link: "https://starstatsuri.site/",
-      linkLabel: "https://starstatsuri.site/",
-      linkBelowSummary: true,
-      stack: [
-        "React, Spring Boot, JPA, MySQL, CRUD, Maven, Azure VM, Axios",
-      ],
+      title: "Tikkle",
+      summary:
+        "A service that turns money saved in everyday life into 'virtual savings' so you can enjoy reaching a target amount like a game.",
+      link: "https://mytikkle.space/",
+      linkLabel: "https://mytikkle.space/",
+      stack: ["React, TypeScript, Spring Boot, MySQL, OAuth2, Gradle"],
       images: [
-        { src: suri00, alt: "Home", caption: "Home (1)" },
-        { src: suri03, alt: "Home", caption: "Home (2)" },
-        { src: suri01, alt: "Details", caption: "Details" },
-        { src: suri02, alt: "Board", caption: "Q&A board" },
-        { src: suri04, alt: "Manage inquiry", caption: "Manage inquiries" },
+        { src: tik00, alt: "Intro page", caption: "Intro page" },
+        { src: tik01, alt: "Main after login", caption: "Main page after login" },
+        { src: tik02, alt: "Main after login", caption: "Main page after login" },
+        {
+          src: tik03,
+          alt: "Saving log details",
+          caption: "Saving log details — manage your saving logs",
+        },
+        { src: tik04, alt: "Saving log list", caption: "Saving log list" },
+        { src: tik05, alt: "Create goal", caption: "Create a new goal" },
+        { src: tik06, alt: "Badges", caption: "Badges overview — confetti on success!" },
+        {
+          src: tik07,
+          alt: "Groups & invites",
+          caption: "Create/invite groups — friend invites & in-group ranking",
+        },
       ],
-      period: "2024.06 – 2024.08 + refactor in 2025.06",
+      period: "2025.07 – 2025.12",
       highlights: [
-        "CRUD with Controller–Service–Repository — Q&A board implemented",
-        "Single domain via Nginx reverse proxy — resolved CORS issues",
-        "React Query + React Hook Form — API requests and forms",
-        "Azure snapshots + app lifecycle schedule — safe rollback ready",
+        "Social login via Kakao/Naver/Google OAuth",
+        "Auto-issue badges on saving logs — achievements system",
+        "Visualized progress to the target — progress gauge/effects",
+        "Badge challenges & ranking — competition-driven motivation",
+        "UX first design to build savings habits",
+        "Sign-up success improved 62% → 78%",
       ],
       teamSize: 1,
       myRole: "Full-stack",
-      readme: starReadmeEn,
+      readme: tikkleReadmeEn,
     },
+    
     {
       title: "Portfolio Website",
       period: "2025.08 – 2025.09",

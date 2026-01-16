@@ -18,9 +18,7 @@ Record money you saved in daily life—like “bus instead of taxi” or “skip
 
 - **LCP:** 3.4s → 2.1s (−32% initial payload)
 
-- **Build time:** maintained at 6.07s (469 modules)
-
-## 🤔 Problem / Solution
+## 🔨 Problem / Solution
 
 We wanted to help users remember and habit-form their daily savings, without heavy financial integrations.
 
@@ -48,40 +46,3 @@ We wanted to help users remember and habit-form their daily savings, without hea
 
 https://mytikkle.space
 
-## ⚙️ Setup
-```bash
-# [Backend]
-# 1) Clone
-git clone https://github.com/soonybutter/tikkle_BE.git
-cd tikkle_BE
-
-# 2) Local run (requires MySQL)
-./gradlew bootRun --args="--spring.profiles.active=local"
-
-# 3) Prod build/run (server)
-./gradlew bootJar
-java -jar build/libs/*.jar --spring.profiles.active=prod
-
-# [Frontend]
-# 1) Clone
-git clone https://github.com/soonybutter/tikkle_FE.git
-cd tikkle_FE
-
-# 2) Install
-npm install
-
-# 3) Env (.env)
-# Development
-VITE_API_BASE=http://localhost:8080
-VITE_SERVICE_URL=http://localhost:5173
-# Production (with reverse proxy)
-# VITE_API_BASE=https://mytikkle.space
-# VITE_SERVICE_URL=https://mytikkle.space
-
-# 4) Dev
-npm run dev
-
-# 5) Build & deploy (example: sync to Azure VM)
-npm run build
-# on the server
-sudo rsync -av --delete dist/ /var/www/tikkle/
